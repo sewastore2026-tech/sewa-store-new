@@ -1110,15 +1110,13 @@ export default function App() {
                            {definedItems.map(i => <option key={i.id} value={i.name}>{i.brand} - {i.name}</option>)}
                          </select>
                        </div>
-                       <div className="flex gap-3">
-                         <div className="w-24 flex-1 sm:flex-none">
-                           <label className="block text-xs mb-1 text-slate-600">بڕ (دانە)</label>
-                           <input required type="number" step="any" value={item.qty} onChange={(e) => updatePurItem(item.id, 'qty', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
-                         </div>
-                         <div className="w-32 flex-1 sm:flex-none">
-                           <label className="block text-xs mb-1 text-slate-600">نرخی تاک</label>
-                           <input required type="number" step="any" value={item.unitPrice} onChange={(e) => updatePurItem(item.id, 'unitPrice', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
-                         </div>
+                       <div className="w-24">
+                         <label className="block text-xs mb-1 text-slate-600">بڕ (دانە)</label>
+                         <input required type="number" step="any" value={item.qty} onChange={(e) => updatePurItem(item.id, 'qty', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
+                       </div>
+                       <div className="w-32">
+                         <label className="block text-xs mb-1 text-slate-600">نرخی تاک</label>
+                         <input required type="number" step="any" value={item.unitPrice} onChange={(e) => updatePurItem(item.id, 'unitPrice', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
                        </div>
                        {purItems.length > 1 && (
                           <button type="button" onClick={() => removePurItem(item.id)} className="p-2 w-full sm:w-auto bg-rose-100 hover:bg-rose-200 text-rose-600 rounded-lg transition-colors mt-2 sm:mt-0"><IconTrash/> سڕینەوە</button>
@@ -2208,7 +2206,7 @@ export default function App() {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 right-0 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-64 bg-blue-950 text-white flex flex-col shadow-2xl z-50 border-l border-blue-900`}>
+      <div className={`fixed inset-y-0 right-0 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-full md:w-64 bg-blue-950 text-white flex flex-col shadow-2xl z-50 border-l border-blue-900`}>
         <div className="p-6 text-center border-b border-blue-900 bg-blue-900/40 relative">
           <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden absolute top-4 left-4 text-blue-300 hover:text-white"><IconX /></button>
           {STORE_LOGO && <img src={STORE_LOGO} alt="Logo" className="w-24 h-24 mx-auto mb-4 object-contain drop-shadow-md" />}
