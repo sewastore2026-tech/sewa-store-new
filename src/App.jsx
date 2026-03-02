@@ -71,6 +71,7 @@ export default function App() {
   const [loggedAppUser, setLoggedAppUser] = useState(null);
   const [view, setView] = useState('dashboard');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile Menu State
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   // Custom Modal State
   const [modal, setModal] = useState({ show: false, type: 'alert', message: '', onConfirm: null });
@@ -114,11 +115,23 @@ export default function App() {
   const getToday = () => new Date().toISOString().split('T')[0];
 
   useEffect(() => {
-    // Setting back to RTL. The mobile menu will be handled via CSS to appear from the right.
-    document.documentElement.setAttribute('dir', 'rtl');
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Dynamic RTL/LTR switching based on screen size
+    if (isMobile) {
+      document.documentElement.setAttribute('dir', 'ltr'); // LTR for mobile
+    } else {
+      document.documentElement.setAttribute('dir', 'rtl'); // RTL for desktop
+    }
     document.documentElement.setAttribute('lang', 'ckb');
     document.documentElement.style.colorScheme = 'light';
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     const initAuth = async () => {
@@ -2200,7 +2213,7 @@ export default function App() {
 
   // --- Layout ---
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-slate-50 overflow-hidden" dir="rtl" style={{fontFamily: "'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
+    <div className="flex flex-col md:flex-row h-screen bg-slate-50 overflow-hidden" dir={isMobile ? 'ltr' : 'rtl'} style={{fontFamily: "'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
       
       {/* Mobile Top Nav */}
       <div className="md:hidden bg-blue-950 text-white p-4 flex justify-between items-center shadow-md z-20">
@@ -2219,7 +2232,7 @@ export default function App() {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 right-0 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-full md:w-64 bg-blue-950 text-white flex flex-col shadow-2xl z-50 border-l border-blue-900`}>
+      <div className={`fixed inset-y-0 left-0 transform ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-full md:w-64 bg-blue-950 text-white flex flex-col shadow-2xl z-50 md:border-l border-blue-900`} dir="rtl">
         <div className="p-6 text-center border-b border-blue-900 bg-blue-900/40 relative">
           <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden absolute top-4 left-4 text-blue-300 hover:text-white"><IconX /></button>
           {STORE_LOGO && <img src={STORE_LOGO} alt="Logo" className="w-24 h-24 mx-auto mb-4 object-contain drop-shadow-md" />}
@@ -2265,7 +2278,7 @@ export default function App() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-8 w-full">
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 w-full" dir="rtl">
         <div className="max-w-6xl mx-auto pb-20 md:pb-0">
           {view === 'dashboard' && renderDashboard()}
           {view === 'items' && renderDefinedItems()}
@@ -2284,7 +2297,7 @@ export default function App() {
       
       {/* پەنجەرەی تایبەت بە بەڵگەنامەکان و وێنەکانیان */}
       {viewingDocuments && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" dir="rtl">
           <div className="bg-white p-6 rounded-2xl shadow-2xl max-w-md w-full border border-slate-200">
             <div className="flex justify-between items-center mb-4 border-b pb-3">
               <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2"><IconDocs/> بەڵگەنامەکانی: {viewingDocuments.customerName}</h3>
@@ -2333,7 +2346,7 @@ export default function App() {
       )}
 
       {modal.show && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" dir="rtl">
           <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full border border-slate-200">
             <h3 className="text-xl font-bold text-slate-900 mb-4">{modal.type === 'confirm' ? 'دڵنیابوونەوە' : 'ئاگاداری'}</h3>
             <p className="text-lg text-slate-700 mb-8">{modal.message}</p>
