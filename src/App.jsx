@@ -114,9 +114,8 @@ export default function App() {
   const getToday = () => new Date().toISOString().split('T')[0];
 
   useEffect(() => {
-    // Forcing LTR direction to place hamburger menu on the left and content right, as requested for mobile view layout.
-    // We will keep 'rtl' for content direction via utility classes where needed.
-    document.documentElement.setAttribute('dir', 'ltr');
+    // Setting back to RTL. The mobile menu will be handled via CSS to appear from the right.
+    document.documentElement.setAttribute('dir', 'rtl');
     document.documentElement.setAttribute('lang', 'ckb');
     document.documentElement.style.colorScheme = 'light';
   }, []);
