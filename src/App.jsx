@@ -70,7 +70,7 @@ export default function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [loggedAppUser, setLoggedAppUser] = useState(null);
   const [view, setView] = useState('dashboard');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile Menu State
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   // Custom Modal State
@@ -79,7 +79,7 @@ export default function App() {
   // State Collections
   const [companies, setCompanies] = useState([]);
   const [agents, setAgents] = useState([]); 
-  const [offices, setOffices] = useState([]); // نوسینگەکان
+  const [offices, setOffices] = useState([]); 
   const [definedItems, setDefinedItems] = useState([]); 
   const [purchases, setPurchases] = useState([]);
   const [sales, setSales] = useState([]);
@@ -123,11 +123,10 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    // Dynamic RTL/LTR switching based on screen size
     if (isMobile) {
-      document.documentElement.setAttribute('dir', 'ltr'); // LTR for mobile
+      document.documentElement.setAttribute('dir', 'ltr'); 
     } else {
-      document.documentElement.setAttribute('dir', 'rtl'); // RTL for desktop
+      document.documentElement.setAttribute('dir', 'rtl'); 
     }
     document.documentElement.setAttribute('lang', 'ckb');
     document.documentElement.style.colorScheme = 'light';
@@ -203,7 +202,7 @@ export default function App() {
     }
   };
 
-  // --- Printing Helper ---
+  // --- Printing Helper (FIXED FOR MOBILE AND DESKTOP) ---
   const printContent = (title, receiptNo, contentHTML, party1Name = STORE_NAME, party2Name = 'کڕیار/فرۆشیار', includeSignatures = true) => {
     const signatureImage = STORE_SIGNATURE ? `<img src="${STORE_SIGNATURE}" style="width: 120px; height: auto; margin: 5px auto; display: block;" alt="واژۆ" />` : '';
     const signature2Image = PARTY2_SIGNATURE ? `<img src="${PARTY2_SIGNATURE}" style="width: 120px; height: auto; margin: 5px auto; display: block;" alt="واژۆی لایەنی دووەم" />` : '';
@@ -224,21 +223,29 @@ export default function App() {
     ` : '';
 
     const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alertMsg("تکایە ڕێگە بە کردنەوەی پەنجەرەی نوێ (Pop-ups) بدە لە براوسەرەکەت بۆ چاپکردن.");
+      return;
+    }
+
     printWindow.document.write(`
       <html dir="rtl">
         <head>
           <title>${title}</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <style>
             @media print { 
-              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 10px; width: 100%; zoom: 85%; } 
-              @page { size: auto; margin: 5mm; }
-              .receipt-container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; }
-              table { font-size: 12px !important; }
-              th, td { padding: 8px !important; }
+              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 0; width: 100%; } 
+              @page { size: portrait; margin: 10mm; }
+              .receipt-container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: none !important; padding: 0 !important; margin: 0 !important; }
+              table { font-size: 13px !important; min-width: 0 !important; width: 100% !important; table-layout: auto !important; word-break: break-word !important; margin-bottom: 10px !important; }
+              th, td { padding: 6px !important; white-space: normal !important; }
+              div, table, tbody, tr, td, th { max-width: 100% !important; overflow: visible !important; min-width: 0 !important; }
               .header-logo h1 { font-size: 24px !important; }
-              .info-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+              .info-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; display: grid !important; }
               .info-box { padding: 10px !important; font-size: 12px !important; }
+              .overflow-x-auto { overflow-x: visible !important; }
+              ::-webkit-scrollbar { display: none; }
             }
             body { font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; color: #0f172a; background: #ffffff; margin: 0; }
             .receipt-container { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 12px; border-top: 8px solid #1e3a8a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; box-sizing: border-box; }
@@ -246,11 +253,11 @@ export default function App() {
             .header-logo { display: flex; align-items: center; gap: 15px; }
             .header-logo h1 { color: #f97316; margin: 0; font-size: 28px; font-weight: 900; }
             .header-logo p { color: #1e3a8a; margin: 4px 0 0 0; font-size: 15px; font-weight: bold; }
-            .header-meta { text-align: left; background: #eff6ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #bfdbfe; flex-grow: 1; min-width: 200px; }
+            .header-meta { text-align: left; background: #eff6ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #bfdbfe; flex-grow: 1; }
             .header-meta .title-badge { color: #1e3a8a; font-size: 16px; margin-bottom: 5px; display: block; font-weight: bold; }
             .header-meta p { margin: 2px 0; font-size: 13px; }
             .table-responsive { width: 100%; overflow-x: auto; }
-            table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 25px; font-size: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; min-width: 600px; }
+            table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 25px; font-size: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
             th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; }
             th { background-color: #1e3a8a; color: #ffffff; font-weight: bold; font-size: 14px; }
             tr:last-child td { border-bottom: none; }
@@ -287,7 +294,17 @@ export default function App() {
               </div>
             </div>
           </div>
-          <script>setTimeout(() => { window.print(); window.close(); }, 1200);</script>
+          <script>
+            // Improved print logic for mobile
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+              }, 800);
+            };
+            window.onafterprint = function() {
+              window.close();
+            };
+          </script>
         </body>
       </html>
     `);
@@ -1136,13 +1153,15 @@ export default function App() {
                            {definedItems.map(i => <option key={i.id} value={i.name}>{i.brand} - {i.name}</option>)}
                          </select>
                        </div>
-                       <div className="w-24">
-                         <label className="block text-xs mb-1 text-slate-600">بڕ (دانە)</label>
-                         <input required type="number" step="any" value={item.qty} onChange={(e) => updatePurItem(item.id, 'qty', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
-                       </div>
-                       <div className="w-32">
-                         <label className="block text-xs mb-1 text-slate-600">نرخی تاک</label>
-                         <input required type="number" step="any" value={item.unitPrice} onChange={(e) => updatePurItem(item.id, 'unitPrice', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
+                       <div className="flex gap-3">
+                         <div className="w-24 flex-1 sm:flex-none">
+                           <label className="block text-xs mb-1 text-slate-600">بڕ (دانە)</label>
+                           <input required type="number" step="any" value={item.qty} onChange={(e) => updatePurItem(item.id, 'qty', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
+                         </div>
+                         <div className="w-32 flex-1 sm:flex-none">
+                           <label className="block text-xs mb-1 text-slate-600">نرخی تاک</label>
+                           <input required type="number" step="any" value={item.unitPrice} onChange={(e) => updatePurItem(item.id, 'unitPrice', e.target.value)} className="w-full border border-slate-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-900" />
+                         </div>
                        </div>
                        {purItems.length > 1 && (
                           <button type="button" onClick={() => removePurItem(item.id)} className="p-2 w-full sm:w-auto bg-rose-100 hover:bg-rose-200 text-rose-600 rounded-lg transition-colors mt-2 sm:mt-0"><IconTrash/> سڕینەوە</button>
