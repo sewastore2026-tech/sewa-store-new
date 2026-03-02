@@ -114,7 +114,9 @@ export default function App() {
   const getToday = () => new Date().toISOString().split('T')[0];
 
   useEffect(() => {
-    document.documentElement.setAttribute('dir', 'rtl');
+    // Forcing LTR direction to place hamburger menu on the left and content right, as requested for mobile view layout.
+    // We will keep 'rtl' for content direction via utility classes where needed.
+    document.documentElement.setAttribute('dir', 'ltr');
     document.documentElement.setAttribute('lang', 'ckb');
     document.documentElement.style.colorScheme = 'light';
   }, []);
@@ -214,21 +216,29 @@ export default function App() {
       <html dir="rtl">
         <head>
           <title>${title}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
           <style>
             @media print { 
-              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } 
-              @page { size: auto; margin: 8mm; }
+              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 10px; width: 100%; zoom: 85%; } 
+              @page { size: auto; margin: 5mm; }
+              .receipt-container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; }
+              table { font-size: 12px !important; }
+              th, td { padding: 8px !important; }
+              .header-logo h1 { font-size: 24px !important; }
+              .info-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+              .info-box { padding: 10px !important; font-size: 12px !important; }
             }
-            body { font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; color: #0f172a; background: #ffffff; }
-            .receipt-container { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 12px; border-top: 8px solid #1e3a8a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; }
-            .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px; }
+            body { font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; color: #0f172a; background: #ffffff; margin: 0; }
+            .receipt-container { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 12px; border-top: 8px solid #1e3a8a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; box-sizing: border-box; }
+            .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
             .header-logo { display: flex; align-items: center; gap: 15px; }
             .header-logo h1 { color: #f97316; margin: 0; font-size: 28px; font-weight: 900; }
             .header-logo p { color: #1e3a8a; margin: 4px 0 0 0; font-size: 15px; font-weight: bold; }
-            .header-meta { text-align: left; background: #eff6ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #bfdbfe; }
+            .header-meta { text-align: left; background: #eff6ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #bfdbfe; flex-grow: 1; min-width: 200px; }
             .header-meta .title-badge { color: #1e3a8a; font-size: 16px; margin-bottom: 5px; display: block; font-weight: bold; }
             .header-meta p { margin: 2px 0; font-size: 13px; }
-            table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 25px; font-size: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+            .table-responsive { width: 100%; overflow-x: auto; }
+            table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 25px; font-size: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; min-width: 600px; }
             th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; }
             th { background-color: #1e3a8a; color: #ffffff; font-weight: bold; font-size: 14px; }
             tr:last-child td { border-bottom: none; }
@@ -244,7 +254,7 @@ export default function App() {
           <div class="receipt-container">
             <div class="header">
               <div class="header-logo">
-                ${STORE_LOGO ? `<img src="${STORE_LOGO}" style="width: 100px; height: 100px; object-fit: contain; border-radius: 8px;" alt="Logo" onerror="this.style.display='none'" />` : ''}
+                ${STORE_LOGO ? `<img src="${STORE_LOGO}" style="width: 80px; height: 80px; object-fit: contain; border-radius: 8px;" alt="Logo" onerror="this.style.display='none'" />` : ''}
                 <div>
                   <h1>${STORE_NAME}</h1>
                   <p>مۆبایل و ئەلیکترۆنیات</p>
@@ -265,7 +275,7 @@ export default function App() {
               </div>
             </div>
           </div>
-          <script>setTimeout(() => { window.print(); window.close(); }, 800);</script>
+          <script>setTimeout(() => { window.print(); window.close(); }, 1200);</script>
         </body>
       </html>
     `);
@@ -470,11 +480,13 @@ export default function App() {
           ${p.paymentType === 'debt' ? `<strong>کۆی حسابی ئەم لایەنە:</strong> <span dir="ltr" style="color: #f97316; font-weight: bold; font-size: 16px;">$${currentDebt.toFixed(2)}</span>` : ''}
         </div>
       </div>
-      <table>
-        <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی گشتی</th></tr>
-        ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
-        <tr><td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td><td style="font-weight:bold; font-size: 16px; color:#f97316;">$${p.total.toFixed(2)}</td></tr>
-      </table>
+      <div class="table-responsive">
+        <table>
+          <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی گشتی</th></tr>
+          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
+          <tr><td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td><td style="font-weight:bold; font-size: 16px; color:#f97316;">$${p.total.toFixed(2)}</td></tr>
+        </table>
+      </div>
       <div style="margin-top:15px; color:#334155;"><strong>تێبینی:</strong> ${p.note || '-'}</div>
     `;
     printContent('پسوڵەی کڕین', p.receiptNo, html, STORE_NAME, p.companyName, true);
@@ -602,19 +614,21 @@ export default function App() {
           ${balanceHTML}
         </div>
       </div>
-      <table>
-        <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی نرخ</th></tr>
-        ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
-        <tr style="background-color: #f8fafc;">
-          <td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td>
-          <td style="font-weight:bold; font-size: 16px; color:#f97316;">$${s.price.toFixed(2)}</td>
-        </tr>
-        ${s.saleType === 'installment' ? `
-          <tr><td colspan="3" style="text-align: left;">پێشەکی وەرگیراو:</td><td style="color:#059669; font-weight:bold;">$${s.advance.toFixed(2)}</td></tr>
-          <tr><td colspan="3" style="text-align: left;">قیستی مانگانە (${s.months} مانگ):</td><td style="color:#1e3a8a; font-weight:bold;">$${s.monthlyAmount.toFixed(2)}</td></tr>
-        ` : ''}
-        ${isCredit ? `<tr><td colspan="3" style="text-align: left;">وادەی گەڕاندنەوە:</td><td style="color:#f97316; font-weight:bold;" dir="ltr">${s.dueDate}</td></tr>` : ''}
-      </table>
+      <div class="table-responsive">
+        <table>
+          <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی نرخ</th></tr>
+          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
+          <tr style="background-color: #f8fafc;">
+            <td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td>
+            <td style="font-weight:bold; font-size: 16px; color:#f97316;">$${s.price.toFixed(2)}</td>
+          </tr>
+          ${s.saleType === 'installment' ? `
+            <tr><td colspan="3" style="text-align: left;">پێشەکی وەرگیراو:</td><td style="color:#059669; font-weight:bold;">$${s.advance.toFixed(2)}</td></tr>
+            <tr><td colspan="3" style="text-align: left;">قیستی مانگانە (${s.months} مانگ):</td><td style="color:#1e3a8a; font-weight:bold;">$${s.monthlyAmount.toFixed(2)}</td></tr>
+          ` : ''}
+          ${isCredit ? `<tr><td colspan="3" style="text-align: left;">وادەی گەڕاندنەوە:</td><td style="color:#f97316; font-weight:bold;" dir="ltr">${s.dueDate}</td></tr>` : ''}
+        </table>
+      </div>
       <div style="margin-top:15px; color:#334155;"><strong>تێبینی:</strong> ${s.note || '-'}</div>
     `;
     printContent(isCash ? 'پسوڵەی فرۆشتن (کاش)' : (isCredit ? 'پسوڵەی فرۆشتن (قەرز)' : 'پسوڵەی فرۆشتن (قیست)'), s.receiptNo, html, STORE_NAME, s.customerName, true);
