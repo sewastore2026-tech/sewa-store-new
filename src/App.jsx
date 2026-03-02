@@ -232,41 +232,46 @@ export default function App() {
       <html dir="rtl">
         <head>
           <title>${title}</title>
+          <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <script src="https://cdn.tailwindcss.com"></script>
           <style>
+            *, *::before, *::after { box-sizing: border-box !important; }
             @media print { 
-              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 0; width: 100%; } 
-              @page { size: portrait; margin: 10mm; }
-              .receipt-container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: none !important; padding: 0 !important; margin: 0 !important; }
-              table { font-size: 13px !important; min-width: 0 !important; width: 100% !important; table-layout: auto !important; word-break: break-word !important; margin-bottom: 10px !important; }
-              th, td { padding: 6px !important; white-space: normal !important; }
-              div, table, tbody, tr, td, th { max-width: 100% !important; overflow: visible !important; min-width: 0 !important; }
-              .header-logo h1 { font-size: 24px !important; }
-              .info-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; display: grid !important; }
-              .info-box { padding: 10px !important; font-size: 12px !important; }
-              .overflow-x-auto { overflow-x: visible !important; }
+              body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; margin: 0; padding: 10px; width: 100%; } 
+              * { color-adjust: exact !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+              @page { size: A4 portrait; margin: 10mm; }
+              .receipt-container { box-shadow: none !important; border: 2px solid #1e3a8a !important; width: 100% !important; max-width: 100% !important; padding: 15px !important; margin: 0 !important; }
+              table { font-size: 12px !important; min-width: 0 !important; width: 100% !important; table-layout: auto !important; border-collapse: collapse !important; margin-bottom: 10px !important; border: 1px solid #cbd5e1 !important; }
+              th, td { padding: 6px !important; white-space: normal !important; border: 1px solid #cbd5e1 !important; word-wrap: break-word !important; }
+              th { background-color: #1e3a8a !important; color: #ffffff !important; }
+              div, table, tbody, tr, td, th { max-width: 100% !important; overflow: visible !important; }
+              .header-logo h1 { font-size: 22px !important; }
+              .info-grid { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; }
+              .info-box { flex: 1 1 45% !important; border: 1px solid #cbd5e1 !important; padding: 10px !important; font-size: 12px !important; background-color: #f8fafc !important; }
+              .overflow-x-auto, .table-responsive { overflow-x: visible !important; }
+              [class*="min-w-"] { min-width: 0 !important; }
               ::-webkit-scrollbar { display: none; }
             }
             body { font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; color: #0f172a; background: #ffffff; margin: 0; }
-            .receipt-container { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 12px; border-top: 8px solid #1e3a8a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; box-sizing: border-box; }
+            .receipt-container { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 2px solid #e2e8f0; border-top: 8px solid #1e3a8a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; box-sizing: border-box; }
             .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
             .header-logo { display: flex; align-items: center; gap: 15px; }
-            .header-logo h1 { color: #f97316; margin: 0; font-size: 28px; font-weight: 900; }
+            .header-logo h1 { color: #f97316; margin: 0; font-size: 26px; font-weight: 900; }
             .header-logo p { color: #1e3a8a; margin: 4px 0 0 0; font-size: 15px; font-weight: bold; }
             .header-meta { text-align: left; background: #eff6ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #bfdbfe; flex-grow: 1; }
             .header-meta .title-badge { color: #1e3a8a; font-size: 16px; margin-bottom: 5px; display: block; font-weight: bold; }
             .header-meta p { margin: 2px 0; font-size: 13px; }
             .table-responsive { width: 100%; overflow-x: auto; }
-            table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 25px; font-size: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
-            th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; }
+            table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; font-size: 14px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+            th, td { padding: 10px; text-align: right; border: 1px solid #e2e8f0; }
             th { background-color: #1e3a8a; color: #ffffff; font-weight: bold; font-size: 14px; }
-            tr:last-child td { border-bottom: none; }
             tr:nth-child(even) { background-color: #f8fafc; }
-            .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-            .info-box { background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; line-height: 1.6; color: #0f172a; font-size: 14px; }
-            .info-box strong { color: #f97316; display: inline-block; width: 120px; font-weight: bold; }
+            .info-grid { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+            .info-box { flex: 1; min-width: 250px; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; line-height: 1.8; color: #0f172a; font-size: 14px; }
+            .info-box strong { color: #f97316; font-weight: bold; margin-left: 5px; }
             .thank-you { text-align: center; margin-top: 25px; color: #334155; font-size: 15px; }
-            .contact-note { margin-top: 10px; font-size: 15px; font-weight: bold; color: #ffffff; background: #1e3a8a; padding: 10px; border-radius: 8px; text-align: center; }
+            .contact-note { margin-top: 10px; font-size: 15px; font-weight: bold; color: #000000; background: #ffffff; border: 2px dashed #1e3a8a; padding: 10px; border-radius: 8px; text-align: center; }
           </style>
         </head>
         <body>
@@ -295,11 +300,11 @@ export default function App() {
             </div>
           </div>
           <script>
-            // Improved print logic for mobile
+            // Wait for Tailwind CDN and Images to load before triggering print
             window.onload = function() {
               setTimeout(function() {
                 window.print();
-              }, 800);
+              }, 1200);
             };
             window.onafterprint = function() {
               window.close();
