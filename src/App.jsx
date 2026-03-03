@@ -14,7 +14,7 @@ const STORE_LOGO = 'https://i.ibb.co/jkdXND2T/Gemini-Generated-Image-qfc03bqfc03
 const STORE_SIGNATURE = 'https://i.ibb.co/qL4BDmBt/Sarwar-signature.png'; // واژۆی لایەنی یەکەم
 const PARTY2_SIGNATURE = 'https://i.ibb.co/Hf65zpHf/Sarwar-signature.jpg'; // واژۆی لایەنی دووەم
 const STORE_PHONE = '07701534434';
-const STORE_NAME = 'Sewa Store';
+const STORE_NAME = 'سێوە ستۆر';
 
 // --- Firebase Initialization ---
 const getFirebaseConfig = () => {
@@ -70,7 +70,7 @@ export default function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [loggedAppUser, setLoggedAppUser] = useState(null);
   const [view, setView] = useState('dashboard');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile Menu State
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   // Custom Modal State
@@ -79,7 +79,7 @@ export default function App() {
   // State Collections
   const [companies, setCompanies] = useState([]);
   const [agents, setAgents] = useState([]); 
-  const [offices, setOffices] = useState([]); 
+  const [offices, setOffices] = useState([]); // نوسینگەکان
   const [definedItems, setDefinedItems] = useState([]); 
   const [purchases, setPurchases] = useState([]);
   const [sales, setSales] = useState([]);
@@ -92,6 +92,7 @@ export default function App() {
   const [viewingInstallments, setViewingInstallments] = useState(null);
   const [viewingDocuments, setViewingDocuments] = useState(null); 
   const [selectedDocs, setSelectedDocs] = useState([]);
+  // Fixed sale options to properly include 'credit_company'
   const [saleMode, setSaleMode] = useState('installment'); 
   const [purMode, setPurMode] = useState('cash'); 
   const [saleItems, setSaleItems] = useState([{ id: Date.now(), itemName: '', qty: 1, unitPrice: '' }]);
@@ -123,10 +124,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    // Dynamic RTL/LTR switching based on screen size
     if (isMobile) {
-      document.documentElement.setAttribute('dir', 'ltr'); 
+      document.documentElement.setAttribute('dir', 'ltr'); // LTR for mobile
     } else {
-      document.documentElement.setAttribute('dir', 'rtl'); 
+      document.documentElement.setAttribute('dir', 'rtl'); // RTL for desktop
     }
     document.documentElement.setAttribute('lang', 'ckb');
     document.documentElement.style.colorScheme = 'light';
@@ -210,12 +212,12 @@ export default function App() {
     const signaturesBlock = includeSignatures ? `
       <div style="display: flex; justify-content: space-around; margin-top: 25px; padding-top: 15px; border-top: 2px dashed #1e3a8a; page-break-inside: avoid;">
         <div style="text-align: center; width: 250px; color: #0f172a;">
-          <div style="font-weight: bold; margin-bottom: ${STORE_SIGNATURE ? '10px' : '35px'}; font-size: 16px; color: #0f172a;">واژۆی لایەنی یەکەم</div>
+          <div style="font-weight: bold; margin-bottom: ${STORE_SIGNATURE ? '10px' : '35px'}; font-size: 16px; color: #1e3a8a;">واژۆی لایەنی یەکەم</div>
           ${signatureImage}
           <div style="border-top: 2px solid #0f172a; padding-top: 8px; font-weight: bold;">${party1Name}</div>
         </div>
         <div style="text-align: center; width: 250px; color: #0f172a;">
-          <div style="font-weight: bold; margin-bottom: ${PARTY2_SIGNATURE ? '10px' : '35px'}; font-size: 16px; color: #0f172a;">واژۆی لایەنی دووەم</div>
+          <div style="font-weight: bold; margin-bottom: ${PARTY2_SIGNATURE ? '10px' : '35px'}; font-size: 16px; color: #1e3a8a;">واژۆی لایەنی دووەم</div>
           ${signature2Image}
           <div style="border-top: 2px solid #0f172a; padding-top: 8px; font-weight: bold;">${party2Name}</div>
         </div>
@@ -234,7 +236,6 @@ export default function App() {
           <title>${title}</title>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <script src="https://cdn.tailwindcss.com"></script>
           <style>
             *, *::before, *::after { box-sizing: border-box !important; }
             @media print { 
@@ -246,9 +247,9 @@ export default function App() {
               th, td { padding: 6px !important; white-space: normal !important; border: 1px solid #cbd5e1 !important; word-wrap: break-word !important; }
               th { background-color: #1e3a8a !important; color: #ffffff !important; }
               div, table, tbody, tr, td, th { max-width: 100% !important; overflow: visible !important; }
-              .header-logo h1 { font-size: 22px !important; }
+              .header-logo h1 { font-size: 22px !important; color: #1e3a8a !important; }
               .info-grid { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; }
-              .info-box { flex: 1 1 45% !important; border: 1px solid #cbd5e1 !important; padding: 10px !important; font-size: 12px !important; background-color: #f8fafc !important; }
+              .info-box { flex: 1 1 45% !important; border: 1px solid #cbd5e1 !important; padding: 10px !important; font-size: 12px !important; background-color: #eff6ff !important; }
               .overflow-x-auto, .table-responsive { overflow-x: visible !important; }
               [class*="min-w-"] { min-width: 0 !important; }
               ::-webkit-scrollbar { display: none; }
@@ -257,8 +258,8 @@ export default function App() {
             .receipt-container { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 2px solid #e2e8f0; border-top: 8px solid #1e3a8a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 25px; box-sizing: border-box; }
             .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
             .header-logo { display: flex; align-items: center; gap: 15px; }
-            .header-logo h1 { color: #f97316; margin: 0; font-size: 26px; font-weight: 900; }
-            .header-logo p { color: #1e3a8a; margin: 4px 0 0 0; font-size: 15px; font-weight: bold; }
+            .header-logo h1 { color: #1e3a8a; margin: 0; font-size: 26px; font-weight: 900; }
+            .header-logo p { color: #f97316; margin: 4px 0 0 0; font-size: 15px; font-weight: bold; }
             .header-meta { text-align: left; background: #eff6ff; padding: 10px 15px; border-radius: 8px; border: 1px solid #bfdbfe; flex-grow: 1; }
             .header-meta .title-badge { color: #1e3a8a; font-size: 16px; margin-bottom: 5px; display: block; font-weight: bold; }
             .header-meta p { margin: 2px 0; font-size: 13px; }
@@ -268,8 +269,8 @@ export default function App() {
             th { background-color: #1e3a8a; color: #ffffff; font-weight: bold; font-size: 14px; }
             tr:nth-child(even) { background-color: #f8fafc; }
             .info-grid { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-            .info-box { flex: 1; min-width: 250px; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; line-height: 1.8; color: #0f172a; font-size: 14px; }
-            .info-box strong { color: #f97316; font-weight: bold; margin-left: 5px; }
+            .info-box { flex: 1; min-width: 250px; background: #eff6ff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe; line-height: 1.8; color: #0f172a; font-size: 14px; }
+            .info-box strong { color: #000000; font-weight: bold; margin-left: 5px; }
             .thank-you { text-align: center; margin-top: 25px; color: #334155; font-size: 15px; }
             .contact-note { margin-top: 10px; font-size: 15px; font-weight: bold; color: #000000; background: #ffffff; border: 2px dashed #1e3a8a; padding: 10px; border-radius: 8px; text-align: center; }
           </style>
@@ -300,7 +301,6 @@ export default function App() {
             </div>
           </div>
           <script>
-            // Wait for Tailwind CDN and Images to load before triggering print
             window.onload = function() {
               setTimeout(function() {
                 window.print();
@@ -354,11 +354,15 @@ export default function App() {
     const totalBoughtOnDebt = purchases.filter(p => p.companyId === companyId && p.paymentType === 'debt').reduce((sum, p) => sum + p.total, 0);
     const totalPaidToCompany = Math.abs(capitalTx.filter(tx => tx.refId === companyId && tx.type === 'pay_company_debt').reduce((sum, tx) => sum + tx.amount, 0));
     const totalReceivedFromCompany = capitalTx.filter(tx => tx.refId === companyId && tx.type === 'receive_company_payment').reduce((sum, tx) => sum + tx.amount, 0);
-    return totalBoughtOnDebt - totalPaidToCompany + totalReceivedFromCompany;
+    const totalCreditSalesToCompany = sales.filter(s => s.saleType === 'credit_company' && s.companyId === companyId).reduce((sum, s) => sum + s.price, 0);
+    
+    // Positive means we owe them. Negative means they owe us.
+    return totalBoughtOnDebt - totalPaidToCompany + totalReceivedFromCompany - totalCreditSalesToCompany;
   };
 
   const getAgentDebt = (agentId) => {
-    const totalCreditSales = sales.filter(s => s.saleType === 'credit' && s.agentId === agentId).reduce((sum, s) => sum + s.price, 0);
+    // Treat old 'credit' as 'credit_agent'
+    const totalCreditSales = sales.filter(s => (s.saleType === 'credit_agent' || s.saleType === 'credit') && s.agentId === agentId).reduce((sum, s) => sum + s.price, 0);
     const totalReceivedFromAgent = capitalTx.filter(tx => tx.type === 'receive_agent_payment' && tx.refId === agentId).reduce((sum, tx) => sum + tx.amount, 0);
     const totalPaidToAgent = Math.abs(capitalTx.filter(tx => tx.type === 'pay_agent_payment' && tx.refId === agentId).reduce((sum, tx) => sum + tx.amount, 0));
     const totalBoughtFromAgentOnDebt = purchases.filter(p => p.companyId === agentId && p.paymentType === 'debt').reduce((sum, p) => sum + p.total, 0);
@@ -510,15 +514,15 @@ export default function App() {
         </div>
         <div class="info-box">
           <strong>بەرواری کڕین:</strong> ${p.date}<br/>
-          <strong>جۆری مامەڵە:</strong> <span style="color: ${p.paymentType === 'debt' ? '#f97316' : '#1e3a8a'}">${p.paymentType === 'debt' ? 'قەرز لەسەرمان' : 'نەختینە (کاش)'}</span><br/>
-          ${p.paymentType === 'debt' ? `<strong>کۆی حسابی ئەم لایەنە:</strong> <span dir="ltr" style="color: #f97316; font-weight: bold; font-size: 16px;">$${currentDebt.toFixed(2)}</span>` : ''}
+          <strong>جۆری مامەڵە:</strong> <span style="color: ${p.paymentType === 'debt' ? '#10b981' : '#064e3b'}">${p.paymentType === 'debt' ? 'قەرز لەسەرمان' : 'نەختینە (کاش)'}</span><br/>
+          ${p.paymentType === 'debt' ? `<strong>حسابی ئەم لایەنە:</strong> <span dir="ltr" style="color: #000000; font-weight: bold; font-size: 16px;">$${currentDebt.toFixed(2)}</span>` : ''}
         </div>
       </div>
       <div class="table-responsive">
         <table>
           <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی گشتی</th></tr>
-          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
-          <tr><td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td><td style="font-weight:bold; font-size: 16px; color:#f97316;">$${p.total.toFixed(2)}</td></tr>
+          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#064e3b;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
+          <tr><td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td><td style="font-weight:bold; font-size: 16px; color:#10b981;">$${p.total.toFixed(2)}</td></tr>
         </table>
       </div>
       <div style="margin-top:15px; color:#334155;"><strong>تێبینی:</strong> ${p.note || '-'}</div>
@@ -545,7 +549,8 @@ export default function App() {
 
   const handleEditSale = (s) => {
      setEditingId(s.id);
-     setSaleMode(s.saleType || 'installment');
+     // Fallback to 'credit_agent' for legacy 'credit' sales
+     setSaleMode(s.saleType === 'credit' ? 'credit_agent' : (s.saleType || 'installment'));
      if (s.items && s.items.length > 0) {
         setSaleItems(s.items);
      } else {
@@ -594,12 +599,22 @@ export default function App() {
       newSale = { ...newSale, customerName: form.customerName.value, phone: form.phone.value, address: form.address.value, advance, months, monthlyAmount, installments };
     } else if (saleMode === 'cash') {
       newSale = { ...newSale, customerName: form.customerName.value, phone: form.phone.value, address: form.address.value };
-    } else if (saleMode === 'credit') {
-      const agentId = form.agentId.value;
-      const agent = agents.find(a => a.id === agentId);
+    } else if (saleMode === 'credit_agent' || saleMode === 'credit_company') {
+      const isAgent = saleMode === 'credit_agent';
+      const entityId = isAgent ? form.agentId.value : form.companyId.value;
+      const entity = isAgent ? agents.find(a => a.id === entityId) : companies.find(c => c.id === entityId);
       const creditDays = parseInt(form.creditDays.value) || 7;
       const dueDateObj = new Date(); dueDateObj.setDate(dueDateObj.getDate() + creditDays);
-      newSale = { ...newSale, agentId, customerName: agent.name, phone: agent.phone, address: agent.address, creditDays, dueDate: dueDateObj.toISOString().split('T')[0] };
+      newSale = { 
+          ...newSale, 
+          agentId: isAgent ? entityId : null, 
+          companyId: !isAgent ? entityId : null,
+          customerName: entity.name, 
+          phone: entity.phone, 
+          address: entity.address, 
+          creditDays, 
+          dueDate: dueDateObj.toISOString().split('T')[0] 
+      };
     }
 
     if (editingId) {
@@ -623,49 +638,57 @@ export default function App() {
   });
 
   const printSale = (s) => {
-    const isCredit = s.saleType === 'credit';
+    const isCreditAgent = s.saleType === 'credit' || s.saleType === 'credit_agent';
+    const isCreditCompany = s.saleType === 'credit_company';
     const isCash = s.saleType === 'cash';
     let balanceHTML = '';
     
-    if (isCredit) {
-       balanceHTML = `<strong>کۆی قەرزی بریکار:</strong> <span dir="ltr" style="color: #f97316; font-weight: bold; font-size: 16px;">$${getAgentDebt(s.agentId).toFixed(2)}</span>`;
+    if (isCreditAgent) {
+       balanceHTML = `<strong>کۆی قەرزی بریکار:</strong> <span dir="ltr" style="color: #000000; font-weight: bold; font-size: 16px;">$${getAgentDebt(s.agentId).toFixed(2)}</span>`;
+    } else if (isCreditCompany) {
+       const cDebt = getCompanyDebt(s.companyId);
+       const debtText = cDebt > 0 ? `لەسەرمانە: $${Math.abs(cDebt).toFixed(2)}` : `قەرزارمانن: $${Math.abs(cDebt).toFixed(2)}`;
+       balanceHTML = `<strong>کۆی حسابی کۆمپانیا:</strong> <span dir="ltr" style="color: #000000; font-weight: bold; font-size: 16px;">${debtText}</span>`;
     } else if (!isCash) {
        const currentBalance = s.price - getSalePaidAmount(s.id);
-       balanceHTML = `<strong>بڕی قەرزی ماوە:</strong> <span dir="ltr" style="color: #f97316; font-weight: bold; font-size: 16px;">$${currentBalance.toFixed(2)}</span>`;
+       balanceHTML = `<strong>بڕی قەرزی ماوە:</strong> <span dir="ltr" style="color: #000000; font-weight: bold; font-size: 16px;">$${currentBalance.toFixed(2)}</span>`;
     }
 
     const itemsList = s.items || [{ itemName: s.itemName, qty: s.qty, unitPrice: s.unitPrice || (s.price/s.qty), price: s.price }];
+    
+    const typeLabel = isCash ? 'کاش' : (isCreditAgent ? 'قەرز (بریکار)' : (isCreditCompany ? 'قەرز (کۆمپانیا)' : 'قیست'));
+    const customerTypeLabel = isCreditAgent ? 'بریکار' : (isCreditCompany ? 'کۆمپانیا' : 'کڕیار');
 
     const html = `
       <div class="info-grid">
         <div class="info-box">
-          <strong>ناوی ${isCredit ? 'بریکار' : 'کڕیار'}:</strong> ${s.customerName}<br>
+          <strong>ناوی ${customerTypeLabel}:</strong> ${s.customerName}<br>
           <strong>مۆبایل:</strong> <span dir="ltr">${s.phone}</span><br>
         </div>
         <div class="info-box">
           <strong>بەرواری پسوڵە:</strong> ${s.date}<br>
-          <strong>جۆری فرۆشتن:</strong> ${isCash ? 'کاش' : (isCredit ? 'قەرز (بریکار)' : 'قیست')}<br>
+          <strong>جۆری فرۆشتن:</strong> ${typeLabel}<br>
           ${balanceHTML}
         </div>
       </div>
       <div class="table-responsive">
         <table>
           <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی نرخ</th></tr>
-          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
+          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#064e3b;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
           <tr style="background-color: #f8fafc;">
             <td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td>
-            <td style="font-weight:bold; font-size: 16px; color:#f97316;">$${s.price.toFixed(2)}</td>
+            <td style="font-weight:bold; font-size: 16px; color:#10b981;">$${s.price.toFixed(2)}</td>
           </tr>
           ${s.saleType === 'installment' ? `
-            <tr><td colspan="3" style="text-align: left;">پێشەکی وەرگیراو:</td><td style="color:#059669; font-weight:bold;">$${s.advance.toFixed(2)}</td></tr>
-            <tr><td colspan="3" style="text-align: left;">قیستی مانگانە (${s.months} مانگ):</td><td style="color:#1e3a8a; font-weight:bold;">$${s.monthlyAmount.toFixed(2)}</td></tr>
+            <tr><td colspan="3" style="text-align: left;">پێشەکی وەرگیراو:</td><td style="color:#10b981; font-weight:bold;">$${s.advance.toFixed(2)}</td></tr>
+            <tr><td colspan="3" style="text-align: left;">قیستی مانگانە (${s.months} مانگ):</td><td style="color:#064e3b; font-weight:bold;">$${s.monthlyAmount.toFixed(2)}</td></tr>
           ` : ''}
-          ${isCredit ? `<tr><td colspan="3" style="text-align: left;">وادەی گەڕاندنەوە:</td><td style="color:#f97316; font-weight:bold;" dir="ltr">${s.dueDate}</td></tr>` : ''}
+          ${isCreditAgent || isCreditCompany ? `<tr><td colspan="3" style="text-align: left;">وادەی گەڕاندنەوە:</td><td style="color:#000000; font-weight:bold;" dir="ltr">${s.dueDate}</td></tr>` : ''}
         </table>
       </div>
       <div style="margin-top:15px; color:#334155;"><strong>تێبینی:</strong> ${s.note || '-'}</div>
     `;
-    printContent(isCash ? 'پسوڵەی فرۆشتن (کاش)' : (isCredit ? 'پسوڵەی فرۆشتن (قەرز)' : 'پسوڵەی فرۆشتن (قیست)'), s.receiptNo, html, STORE_NAME, s.customerName, true);
+    printContent(`پسوڵەی فرۆشتن (${typeLabel})`, s.receiptNo, html, STORE_NAME, s.customerName, true);
   };
 
   const printContract = (s) => {
@@ -674,17 +697,17 @@ export default function App() {
 
     const html = `
       <div style="text-align: center; margin-bottom: 15px;">
-        <h2 style="font-size: 24px; font-weight: 900; color: #1e3a8a; text-decoration: underline; margin: 0;">گرێبەستی قیست</h2>
+        <h2 style="font-size: 24px; font-weight: 900; color: #064e3b; text-decoration: underline; margin: 0;">گرێبەستی قیست</h2>
       </div>
-      <div style="font-size: 14.5px; font-weight: bold; line-height: 1.8; color: #0f172a; text-align: justify; margin-bottom: 20px; padding: 15px 20px; background: #f8fafc; border-radius: 12px; border: 2px solid #e2e8f0;">
+      <div style="font-size: 14.5px; font-weight: bold; line-height: 1.8; color: #0f172a; text-align: justify; margin-bottom: 20px; padding: 15px 20px; background: #ecfdf5; border-radius: 12px; border: 2px solid #a7f3d0;">
         <ol style="margin: 0; padding-right: 20px;">
-          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) پێویستی بە کارتی نیشتمانی هەبوو کە پێشتر وەک بارمتەیەک لای لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) داینابوو تەنها مۆڵەتی شۆفێری لەبری وەردەگیرێت بە مەرجێک ماوەکەی بەسەرنەچوبێت یان ئەو بڕە پارەیەی لە قیستەکە ماوە وەک ئەمانەتێک دەبێت بیدات بە لایەنی یەکەم تا ئەو کاتەی دووبارە کارتی نیشتمانی دەگێڕێتەوە.</li>
+          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) پێویستی بە کارتی نیشتمانی هەبوو کە پێشتر وەک بارمتەیەک لای لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) داینابوو تەنها مۆڵەتی شۆفێری لەبری وەردەگیرێت بە مەرجێک ماوەکەی بەسەرنەچوبێت یان ئەو بڕە پارەیەی لە قیستەکە ماوە وەک ئەمانەتێک دەبێت بیدات بە لایەنی یەکەم تا ئەو کاتەی دووبارە کارتی نیشتمانی دەگێڕێتەوە.</li>
           <li style="margin-bottom: 10px;">لایەنی دووەم بەڵێن دەدات کە پابەند بێت بە گەڕاندنەوەی قیستەکانی لە ماوەی دیاریکراوی خۆیدا هەر ٣٠ ڕۆژ جارێک بێ دواکەوتن ، نەدانی مووچە و دواکەوتنی مووچە و لێبڕینی مووچە و لاوازی بازاڕ یاخوود هەر هۆکارێکی دیکە نەکاتە بەهانە بۆ دواخستنی قیستەکانی.</li>
-          <li style="margin-bottom: 10px;">لایەنی دووەم ئامێری ئاماژەپێکراوی (<span style="color:#1e3a8a">${itemNames}</span>) بێ هیچ کەم و کوڕییەک وەرگرت.</li>
-          <li style="margin-bottom: 10px;">پێویستە لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) کۆپی کارتی نیشتمانی و کارتی زانیاری بدات بە لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) وە پێویستە وەک بارمتەیەک لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) کارتی نیشتمانی اصلى بدات بە لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) تا کۆتایی هاتنی ماوەی قیستەکە و پاکتاوکردنی هەژمارەکەی.</li>
-          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) ویستی بە هەر هۆکارێک ئەم گرێبەستە هەڵبووەشێنێتەوە ئەوا لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) بە مافی خۆی دەزانێت کە بڕی پێشەکی وەرگیراو نەگەڕێنێتەوە بۆ لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) وە کاڵای گەڕاوە بە نرخی ڕۆژ خەمڵاندنی بۆ دەکرێت و دەدرێت بە لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>).</li>
+          <li style="margin-bottom: 10px;">لایەنی دووەم ئامێری ئاماژەپێکراوی (<span style="color:#064e3b">${itemNames}</span>) بێ هیچ کەم و کوڕییەک وەرگرت.</li>
+          <li style="margin-bottom: 10px;">پێویستە لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) کۆپی کارتی نیشتمانی و کارتی زانیاری بدات بە لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) وە پێویستە وەک بارمتەیەک لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) کارتی نیشتمانی اصلى بدات بە لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) تا کۆتایی هاتنی ماوەی قیستەکە و پاکتاوکردنی هەژمارەکەی.</li>
+          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) ویستی بە هەر هۆکارێک ئەم گرێبەستە هەڵبووەشێنێتەوە ئەوا لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) بە مافی خۆی دەزانێت کە بڕی پێشەکی وەرگیراو نەگەڕێنێتەوە بۆ لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) وە کاڵای گەڕاوە بە نرخی ڕۆژ خەمڵاندنی بۆ دەکرێت و دەدرێت بە لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>).</li>
         </ol>
-        <p style="margin-top: 15px; margin-bottom: 0; font-weight: 900; color: #1e3a8a; text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+        <p style="margin-top: 15px; margin-bottom: 0; font-weight: 900; color: #064e3b; text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
           هەردوو لایەن پاش خوێندنەوەی تەواوی خاڵەکان و تێگەیشتنیان وە بە تەواوی هەست و هۆش و پاش ڕەزامەندییان بە ویستی خۆیان لای خوارەوە واژۆیان کرد.
         </p>
       </div>
@@ -731,11 +754,11 @@ export default function App() {
     `).join('') : '<li>هیچ بەڵگەنامەیەک دیاری نەکراوە.</li>';
     
     const html = `
-      <div style="font-size: 16px; line-height: 1.8; color: #0f172a; margin-bottom: 20px; padding: 25px; background: #f8fafc; border-radius: 12px; border: 2px solid #e2e8f0;">
+      <div style="font-size: 16px; line-height: 1.8; color: #0f172a; margin-bottom: 20px; padding: 25px; background: #ecfdf5; border-radius: 12px; border: 2px solid #a7f3d0;">
         <p style="font-size: 18px; font-weight: bold; margin-bottom: 25px; border-bottom: 1px solid #cbd5e1; padding-bottom: 15px;">
-          ئاماژە بە پسوڵەی ژمارە (<span style="color:#f97316; font-size: 20px;">${sale.receiptNo}</span>)، ئەم بەڵگەنامانەی خوارەوە وەرگیراون لە کڕیار (<strong>${sale.customerName}</strong>):
+          ئاماژە بە پسوڵەی ژمارە (<span style="color:#10b981; font-size: 20px;">${sale.receiptNo}</span>)، ئەم بەڵگەنامانەی خوارەوە وەرگیراون لە کڕیار (<strong>${sale.customerName}</strong>):
         </p>
-        <ul style="list-style-type: none; padding: 0; font-size: 17px; font-weight: bold; color: #1e3a8a;">${docsHTML}</ul>
+        <ul style="list-style-type: none; padding: 0; font-size: 17px; font-weight: bold; color: #064e3b;">${docsHTML}</ul>
       </div>
     `;
     printContent('پسوڵەی وەرگرتنی بەڵگەنامە', sale.receiptNo, html, STORE_NAME, sale.customerName, true);
@@ -785,7 +808,7 @@ export default function App() {
               if (tx.type === 'pay_company_debt') debt -= Math.abs(tx.amount);
               if (tx.type === 'receive_company_payment') debt += Math.abs(tx.amount);
            }
-           currentBalance = debt; 
+           currentBalance = Math.abs(debt); 
            phoneNum = comp.phone; 
          }
       } else if ((tx.type === 'pay_office_debt' || tx.type === 'receive_office_loan') && tx.refId) {
@@ -806,17 +829,17 @@ export default function App() {
       <div class="info-grid">
         <div class="info-box">
           <strong>جۆری پسوڵە:</strong> ${typeText}<br/>
-          <strong>ناوی کەس/کۆمپانیا:</strong> ${partyName}<br/>
+          <strong>ناوی لایەن:</strong> ${partyName}<br/>
           <strong>ژمارەی مۆبایل:</strong> <span dir="ltr">${phoneNum}</span><br/>
         </div>
         <div class="info-box">
           <strong>بەروار:</strong> ${tx.date}<br/>
-          <strong>کۆتا باڵانسی ماوە:</strong> <span dir="ltr" style="color: #f97316; font-weight: bold; font-size: 16px;">$${(currentBalance || 0).toFixed(2)}</span>
+          <strong>کۆتا باڵانسی ماوە:</strong> <span dir="ltr" style="color: #000000; font-weight: bold; font-size: 16px;">$${Math.abs(currentBalance || 0).toFixed(2)}</span>
         </div>
       </div>
       <table>
         <tr><th>بڕی پارەی دیاریکراو</th><th>تێبینی</th></tr>
-        <tr><td style="font-weight:bold; color:#1e3a8a; font-size: 18px;" dir="ltr">$${Math.abs(tx.amount).toFixed(2)}</td><td>${tx.note || '-'}</td></tr>
+        <tr><td style="font-weight:bold; color:#064e3b; font-size: 18px;" dir="ltr">$${Math.abs(tx.amount).toFixed(2)}</td><td>${tx.note || '-'}</td></tr>
       </table>
     `;
     printContent(typeText, tx.receiptNo, html, STORE_NAME, partyName, true);
@@ -926,7 +949,7 @@ export default function App() {
             <div><p className="text-orange-100 mb-1 font-medium text-sm md:text-base">کۆی فرۆشراو</p><h3 className="text-xl md:text-2xl font-bold">${totalSales.toFixed(2)}</h3></div>
             <IconShoppingCart size={32} className="opacity-80" />
           </div>
-          <div className="bg-slate-800 text-white p-5 md:p-6 rounded-xl shadow-lg flex items-center justify-between">
+          <div className="bg-black text-white p-5 md:p-6 rounded-xl shadow-lg flex items-center justify-between">
             <div><p className="text-slate-300 mb-1 font-medium text-sm md:text-base">قەرزی بازاڕ (قیست)</p><h3 className="text-xl md:text-2xl font-bold">${totalDebtInMarket.toFixed(2)}</h3></div>
             <IconList size={32} className="opacity-80" />
           </div>
@@ -951,16 +974,16 @@ export default function App() {
             <div><label className="block text-sm mb-1 text-slate-600">ناوی کاڵا</label><input required name="name" defaultValue={itemToEdit?.name} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" placeholder="iPhone 15 Pro Max..." /></div>
             <div className="flex gap-2">
               <button type="submit" className="flex-1 bg-blue-900 hover:bg-blue-800 text-white p-2.5 rounded-lg font-medium transition-colors">{editingId ? 'نوێکردنەوە' : 'زیادکردن'}</button>
-              {editingId && <button type="button" onClick={() => setEditingId(null)} className="bg-slate-400 text-white p-2.5 rounded-lg">بەتاڵ</button>}
+              {editingId && <button type="button" onClick={() => setEditingId(null)} className="bg-slate-400 hover:bg-slate-500 text-white p-2.5 rounded-lg">بەتاڵ</button>}
             </div>
           </form>
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[500px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">جۆری کاڵا</th><th className="p-3 md:p-4">براند</th><th className="p-3 md:p-4">ناوی کاڵا (مۆدێل)</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">جۆری کاڵا</th><th className="p-3 md:p-4">براند</th><th className="p-3 md:p-4">ناوی کاڵا (مۆدێل)</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {definedItems.map(i => (
-                <tr key={i.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{i.type}</td><td className="p-3 md:p-4">{i.brand}</td><td className="p-3 md:p-4 font-bold text-blue-900">{i.name}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(i.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteDefinedItem(i.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full"><IconTrash /></button></td></tr>
+                <tr key={i.id} className="border-b border-slate-100 hover:bg-blue-50"><td className="p-3 md:p-4 font-medium">{i.type}</td><td className="p-3 md:p-4">{i.brand}</td><td className="p-3 md:p-4 font-bold text-blue-900">{i.name}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(i.id)} className="text-blue-900 bg-blue-100 hover:bg-blue-200 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteDefinedItem(i.id)} className="text-rose-600 bg-rose-50 hover:bg-rose-100 p-2 rounded-full"><IconTrash /></button></td></tr>
               ))}
             </tbody>
           </table>
@@ -994,10 +1017,10 @@ export default function App() {
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[400px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناوی بەکارهێنەر</th><th className="p-3 md:p-4">ڕۆڵ</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناوی بەکارهێنەر</th><th className="p-3 md:p-4">ڕۆڵ</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {appUsers.map(u => (
-                <tr key={u.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium" dir="ltr">{u.username}</td><td className="p-3 md:p-4">{u.role === 'admin' ? 'ئەدمین' : 'ئاسایی'}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(u.id)} className="text-blue-900 bg-blue-50 hover:bg-blue-100 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteAppUser(u.id)} className="text-rose-600 bg-rose-50 hover:bg-rose-100 p-2 rounded-full"><IconTrash /></button></td></tr>
+                <tr key={u.id} className="border-b border-slate-100 hover:bg-blue-50"><td className="p-3 md:p-4 font-medium" dir="ltr">{u.username}</td><td className="p-3 md:p-4">{u.role === 'admin' ? 'ئەدمین' : 'ئاسایی'}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(u.id)} className="text-blue-900 bg-blue-100 hover:bg-blue-200 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteAppUser(u.id)} className="text-rose-600 bg-rose-50 hover:bg-rose-100 p-2 rounded-full"><IconTrash /></button></td></tr>
               ))}
               <tr className="border-b border-slate-100 bg-blue-50/30"><td className="p-3 md:p-4 font-medium text-slate-500" dir="ltr">{DEFAULT_ADMIN_USER}</td><td className="p-3 md:p-4 text-slate-500">سەرەکی (گۆڕانکاری ناکرێت)</td><td className="p-3 md:p-4 text-slate-400 text-sm">بنچینەیی</td></tr>
             </tbody>
@@ -1025,11 +1048,11 @@ export default function App() {
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[600px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناو</th><th className="p-3 md:p-4">مۆبایل</th><th className="p-3 md:p-4">ناونیشان</th><th className="p-3 md:p-4">قەرزی ماوە</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناو</th><th className="p-3 md:p-4">مۆبایل</th><th className="p-3 md:p-4">ناونیشان</th><th className="p-3 md:p-4">قەرزی ماوە</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {companies.map(c => {
                 const debt = getCompanyDebt(c.id);
-                return (<tr key={c.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{c.name}</td><td className="p-3 md:p-4">{c.phone}</td><td className="p-3 md:p-4">{c.address}</td><td className="p-3 md:p-4 font-bold text-orange-600">${debt.toFixed(2)}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(c.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteCompany(c.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full"><IconTrash /></button></td></tr>)
+                return (<tr key={c.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{c.name}</td><td className="p-3 md:p-4">{c.phone}</td><td className="p-3 md:p-4">{c.address}</td><td className="p-3 md:p-4 font-bold" dir="ltr">{debt > 0 ? <span className="text-rose-600">لەسەرمانە: $${debt.toFixed(2)}</span> : debt < 0 ? <span className="text-blue-600">قەرزارمانن: $${Math.abs(debt).toFixed(2)}</span> : <span className="text-slate-500">$0.00</span>}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(c.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full hover:bg-blue-100"><IconEdit /></button><button onClick={() => deleteCompany(c.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full hover:bg-rose-100"><IconTrash /></button></td></tr>)
               })}
             </tbody>
           </table>
@@ -1051,17 +1074,17 @@ export default function App() {
             <div><label className="block text-sm mb-1 text-slate-600">تێبینی</label><input name="notes" defaultValue={agentToEdit?.notes} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" /></div>
             <div className="flex gap-2">
               <button type="submit" className="flex-1 bg-blue-900 hover:bg-blue-800 text-white p-2.5 rounded-lg font-medium transition-colors">{editingId ? 'نوێکردنەوە' : 'زیادکردن'}</button>
-              {editingId && <button type="button" onClick={() => setEditingId(null)} className="bg-slate-400 text-white p-2.5 rounded-lg">بەتاڵ</button>}
+              {editingId && <button type="button" onClick={() => setEditingId(null)} className="bg-slate-400 text-white p-2.5 rounded-lg hover:bg-slate-500">بەتاڵ</button>}
             </div>
           </form>
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[600px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناو</th><th className="p-3 md:p-4">مۆبایل</th><th className="p-3 md:p-4">ناونیشان</th><th className="p-3 md:p-4">قەرزی لایە</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناو</th><th className="p-3 md:p-4">مۆبایل</th><th className="p-3 md:p-4">ناونیشان</th><th className="p-3 md:p-4">قەرزی لایە</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {agents.map(a => {
                 const debt = getAgentDebt(a.id);
-                return (<tr key={a.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{a.name}</td><td className="p-3 md:p-4">{a.phone}</td><td className="p-3 md:p-4">{a.address}</td><td className="p-3 md:p-4 font-bold text-orange-600">${debt.toFixed(2)}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(a.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteAgent(a.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full"><IconTrash /></button></td></tr>)
+                return (<tr key={a.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{a.name}</td><td className="p-3 md:p-4">{a.phone}</td><td className="p-3 md:p-4">{a.address}</td><td className="p-3 md:p-4 font-bold text-orange-600">${debt.toFixed(2)}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(a.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full hover:bg-blue-100"><IconEdit /></button><button onClick={() => deleteAgent(a.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full hover:bg-rose-100"><IconTrash /></button></td></tr>)
               })}
             </tbody>
           </table>
@@ -1082,17 +1105,17 @@ export default function App() {
             <div><label className="block text-sm mb-1 text-slate-600">ناونیشان</label><input name="address" defaultValue={officeToEdit?.address} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" /></div>
             <div className="flex gap-2">
               <button type="submit" className="flex-1 bg-blue-900 hover:bg-blue-800 text-white p-2.5 rounded-lg font-medium transition-colors">{editingId ? 'نوێکردنەوە' : 'زیادکردن'}</button>
-              {editingId && <button type="button" onClick={() => setEditingId(null)} className="bg-slate-400 text-white p-2.5 rounded-lg">بەتاڵ</button>}
+              {editingId && <button type="button" onClick={() => setEditingId(null)} className="bg-slate-400 text-white p-2.5 rounded-lg hover:bg-slate-500">بەتاڵ</button>}
             </div>
           </form>
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[500px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناو</th><th className="p-3 md:p-4">مۆبایل</th><th className="p-3 md:p-4">ناونیشان</th><th className="p-3 md:p-4">قەرز (ئێمە قەرزارین)</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناو</th><th className="p-3 md:p-4">مۆبایل</th><th className="p-3 md:p-4">ناونیشان</th><th className="p-3 md:p-4">قەرز (ئێمە قەرزارین)</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {offices.map(o => {
                 const debt = getOfficeDebt(o.id);
-                return (<tr key={o.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{o.name}</td><td className="p-3 md:p-4">{o.phone}</td><td className="p-3 md:p-4">{o.address}</td><td className="p-3 md:p-4 font-bold text-orange-600">${debt.toFixed(2)}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(o.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full"><IconEdit /></button><button onClick={() => deleteOffice(o.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full"><IconTrash /></button></td></tr>)
+                return (<tr key={o.id} className="border-b border-slate-100 hover:bg-slate-50"><td className="p-3 md:p-4 font-medium">{o.name}</td><td className="p-3 md:p-4">{o.phone}</td><td className="p-3 md:p-4">{o.address}</td><td className="p-3 md:p-4 font-bold text-orange-600">${debt.toFixed(2)}</td><td className="p-3 md:p-4 flex gap-2"><button onClick={() => setEditingId(o.id)} className="text-blue-900 bg-blue-50 p-2 rounded-full hover:bg-blue-100"><IconEdit /></button><button onClick={() => deleteOffice(o.id)} className="text-rose-600 bg-rose-50 p-2 rounded-full hover:bg-rose-100"><IconTrash /></button></td></tr>)
               })}
             </tbody>
           </table>
@@ -1136,7 +1159,7 @@ export default function App() {
             </div>
 
             <div className="lg:col-span-3">
-              <label className="block text-sm mb-1 text-slate-600">هەڵبژاردنی ناو {purMode === 'debt' && <span className="text-rose-500">*</span>}</label>
+              <label className="block text-sm mb-1 text-slate-600">هەڵبژاردنی ناو {purMode === 'debt' && <span className="text-rose-500 font-bold">*</span>}</label>
               {purEntityType === 'none' ? (
                  <input name="companyNameStr" placeholder="ناوی فرۆشیار بنووسە..." defaultValue={purToEdit ? purToEdit.companyName : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
               ) : (
@@ -1147,7 +1170,7 @@ export default function App() {
               )}
             </div>
 
-            <div className="lg:col-span-7 bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2 space-y-3">
+            <div className="lg:col-span-7 bg-blue-50 p-4 rounded-xl border border-slate-200 mt-2 space-y-3">
                <h4 className="font-bold text-slate-700 mb-2 border-b pb-2">لیستی کاڵاکان</h4>
                {purItems.map((item, index) => (
                    <div key={item.id} className="flex flex-col sm:flex-row gap-3 sm:items-end p-3 sm:p-0 border sm:border-0 rounded-lg sm:rounded-none bg-white sm:bg-transparent">
@@ -1174,7 +1197,7 @@ export default function App() {
                    </div>
                ))}
                <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-4">
-                  <button type="button" onClick={addPurItem} className="w-full sm:w-auto text-sm font-bold text-blue-700 bg-blue-100 hover:bg-blue-200 px-4 py-2.5 rounded-lg transition-colors">+ زیادکردنی کاڵای تر</button>
+                  <button type="button" onClick={addPurItem} className="w-full sm:w-auto text-sm font-bold text-blue-900 bg-blue-100 hover:bg-blue-200 px-4 py-2.5 rounded-lg transition-colors">+ زیادکردنی کاڵای تر</button>
                   <div className="text-left font-black text-xl text-blue-900 bg-white px-4 py-2 rounded-lg shadow-sm border">کۆی گشتی: ${purItems.reduce((sum, item) => sum + (Number(item.qty) * Number(item.unitPrice)), 0).toFixed(2)}</div>
                </div>
             </div>
@@ -1189,7 +1212,7 @@ export default function App() {
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[800px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ژ.پ</th><th className="p-3 md:p-4">بەروار</th><th className="p-3 md:p-4">فرۆشیار</th><th className="p-3 md:p-4">کاڵاکان</th><th className="p-3 md:p-4">کۆی گشتی</th><th className="p-3 md:p-4">پێدان</th><th className="p-3 md:p-4">تێبینی</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ژ.پ</th><th className="p-3 md:p-4">بەروار</th><th className="p-3 md:p-4">فرۆشیار</th><th className="p-3 md:p-4">کاڵاکان</th><th className="p-3 md:p-4">کۆی گشتی</th><th className="p-3 md:p-4">پێدان</th><th className="p-3 md:p-4">تێبینی</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {purchases.map(p => {
                 const itemsList = p.items || [{ itemName: p.itemName, qty: p.qty, unitPrice: p.price || (p.total/p.qty) }];
@@ -1198,7 +1221,7 @@ export default function App() {
                   <td className="p-3 md:p-4 font-bold text-slate-400">{p.receiptNo}</td><td className="p-3 md:p-4">{p.date}</td><td className="p-3 md:p-4 font-semibold">{p.companyName} <span className="text-xs text-slate-400">({p.entityType === 'agent' ? 'بریکار' : 'کۆمپانیا'})</span></td>
                   <td className="p-3 md:p-4">{itemsList.map(i=>i.itemName).join('، ')}</td>
                   <td className="p-3 md:p-4 font-bold text-blue-900">${p.total.toFixed(2)}</td><td className="p-3 md:p-4">{p.paymentType === 'debt' ? <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-bold">قەرز</span> : <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-bold">کاش</span>}</td><td className="p-3 md:p-4 text-slate-500">{p.note}</td>
-                  <td className="p-3 md:p-4 flex gap-2"><button onClick={() => printPurchase(p)} className="text-slate-600 bg-slate-100 hover:bg-slate-200 p-2 rounded-full"><IconPrinter /></button><button onClick={() => handleEditPurchase(p)} className="text-blue-900 bg-blue-50 hover:bg-blue-100 p-2 rounded-full"><IconEdit /></button><button onClick={() => deletePurchase(p.id)} className="text-rose-500 bg-rose-50 hover:bg-rose-100 p-2 rounded-full"><IconTrash /></button></td>
+                  <td className="p-3 md:p-4 flex gap-2"><button onClick={() => printPurchase(p)} className="text-slate-900 bg-slate-100 hover:bg-slate-200 p-2 rounded-full"><IconPrinter /></button><button onClick={() => handleEditPurchase(p)} className="text-blue-900 bg-blue-100 hover:bg-blue-200 p-2 rounded-full"><IconEdit /></button><button onClick={() => deletePurchase(p.id)} className="text-rose-500 bg-rose-50 hover:bg-rose-100 p-2 rounded-full"><IconTrash /></button></td>
                 </tr>
               )})}
             </tbody>
@@ -1213,7 +1236,7 @@ export default function App() {
       <h2 className="text-2xl font-bold text-slate-800">کۆگا (کاڵا بەردەستەکان)</h2>
       <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
         <table className="w-full text-right min-w-[500px]">
-          <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناوی کاڵا</th><th className="p-3 md:p-4">تێکڕای نرخی کڕین (تێچوو)</th><th className="p-3 md:p-4">بڕی ماوە لە کۆگا</th></tr></thead>
+          <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ناوی کاڵا</th><th className="p-3 md:p-4">تێکڕای نرخی کڕین (تێچوو)</th><th className="p-3 md:p-4">بڕی ماوە لە کۆگا</th></tr></thead>
           <tbody>
             {inventory.length === 0 && <tr><td colSpan="3" className="p-6 text-center text-slate-500">کۆگا بەتاڵە</td></tr>}
             {inventory.map(i => (
@@ -1229,7 +1252,8 @@ export default function App() {
     if (viewingInstallments) {
       const sale = sales.find(s => s.id === viewingInstallments);
       const isInstallment = sale.saleType === 'installment';
-      const isCredit = sale.saleType === 'credit';
+      const isCreditAgent = sale.saleType === 'credit_agent' || sale.saleType === 'credit';
+      const isCreditCompany = sale.saleType === 'credit_company';
       const totalPaid = getSalePaidAmount(sale.id);
       const balance = sale.price - totalPaid;
       const paymentsMade = capitalTx.filter(tx => tx.refId === sale.id && (tx.type === 'receive_installment' || tx.type === 'receive_agent_payment'));
@@ -1238,7 +1262,7 @@ export default function App() {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
             <h2 className="text-xl md:text-2xl font-bold text-slate-800">وردەکاری: {sale.customerName}</h2>
-            <button onClick={() => setViewingInstallments(null)} className="text-blue-900 bg-blue-50 px-4 py-2 rounded-lg font-medium self-start sm:self-auto">گەڕانەوە</button>
+            <button onClick={() => setViewingInstallments(null)} className="text-blue-900 bg-blue-50 px-4 py-2 rounded-lg font-medium self-start sm:self-auto hover:bg-blue-100">گەڕانەوە</button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
             <div className="bg-white p-4 md:p-5 rounded-xl border border-slate-200"><p className="text-sm text-slate-500">کۆی گشتی فرۆشتن</p><h3 className="text-xl font-bold">${sale.price.toFixed(2)}</h3></div>
@@ -1249,7 +1273,7 @@ export default function App() {
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 overflow-x-auto">
               <h3 className="font-bold text-lg mb-3 border-b pb-2">{isInstallment ? 'خشتەی کاتی دیاریکراوی قیستەکان' : 'زانیاری قەرز'}</h3>
               {isInstallment ? (
-                 <table className="w-full text-right text-sm min-w-[300px]"><thead className="bg-slate-50"><tr><th className="p-2">مانگ</th><th className="p-2">بەروار</th><th className="p-2">بڕی پێویست</th></tr></thead><tbody>{sale.installments?.map(inst => (<tr key={inst.id} className="border-b"><td className="p-2">مانگی {inst.monthNum}</td><td className="p-2" dir="ltr">{inst.dueDate}</td><td className="p-2 font-bold">${inst.amount.toFixed(2)}</td></tr>))}</tbody></table>
+                 <table className="w-full text-right text-sm min-w-[300px]"><thead className="bg-blue-50"><tr><th className="p-2">مانگ</th><th className="p-2">بەروار</th><th className="p-2">بڕی پێویست</th></tr></thead><tbody>{sale.installments?.map(inst => (<tr key={inst.id} className="border-b"><td className="p-2">مانگی {inst.monthNum}</td><td className="p-2" dir="ltr">{inst.dueDate}</td><td className="p-2 font-bold">${inst.amount.toFixed(2)}</td></tr>))}</tbody></table>
               ) : (
                  <div className="p-4"><p><strong>وادەی دیاریکراو بۆ گەڕاندنەوە:</strong> <span dir="ltr">${sale.dueDate}</span> ({sale.creditDays} ڕۆژ)</p></div>
               )}
@@ -1257,7 +1281,7 @@ export default function App() {
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 overflow-x-auto">
               <h3 className="font-bold text-lg mb-3 border-b pb-2">مێژووی وەرگرتنی پارەکان</h3>
               <table className="w-full text-right text-sm min-w-[300px]">
-                <thead className="bg-slate-50"><tr><th className="p-2">بەروار</th><th className="p-2">بڕ</th><th className="p-2">تێبینی</th></tr></thead>
+                <thead className="bg-blue-50"><tr><th className="p-2">بەروار</th><th className="p-2">بڕ</th><th className="p-2">تێبینی</th></tr></thead>
                 <tbody>
                   {sale.advance > 0 && <tr><td className="p-2">{sale.date}</td><td className="p-2 text-blue-600 font-bold">${sale.advance.toFixed(2)}</td><td className="p-2">پێشەکی وەرگیراو لەکاتی فرۆشتن</td></tr>}
                   {sale.saleType === 'cash' && <tr><td className="p-2">{sale.date}</td><td className="p-2 text-blue-600 font-bold">${sale.price.toFixed(2)}</td><td className="p-2">فرۆشتنی کاش بە یەکجار</td></tr>}
@@ -1271,7 +1295,8 @@ export default function App() {
     }
 
     const handleEditSale = (s) => {
-       setEditingId(s.id); setSaleMode(s.saleType || 'installment');
+       setEditingId(s.id); 
+       setSaleMode(s.saleType === 'credit' ? 'credit_agent' : (s.saleType || 'installment'));
        if(s.items && s.items.length > 0) setSaleItems(s.items);
        else setSaleItems([{ id: Date.now(), itemName: s.itemName, qty: s.qty, unitPrice: s.unitPrice || (s.price/s.qty) }]);
        window.scrollTo({top:0, behavior:'smooth'});
@@ -1287,17 +1312,26 @@ export default function App() {
           <div className="flex flex-wrap gap-4 mb-6 border-b pb-4">
             <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 bg-slate-50 py-2 px-3 rounded-lg"><input type="radio" name="smode" checked={saleMode === 'installment'} onChange={()=>setSaleMode('installment')} className="w-5 h-5 accent-blue-900" /> فرۆشتن بە قیست</label>
             <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 bg-slate-50 py-2 px-3 rounded-lg"><input type="radio" name="smode" checked={saleMode === 'cash'} onChange={()=>setSaleMode('cash')} className="w-5 h-5 accent-blue-900" /> فرۆشتنی کاش</label>
-            <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 bg-slate-50 py-2 px-3 rounded-lg"><input type="radio" name="smode" checked={saleMode === 'credit'} onChange={()=>setSaleMode('credit')} className="w-5 h-5 accent-blue-900" /> قەرز بۆ بریکار</label>
+            <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 bg-slate-50 py-2 px-3 rounded-lg"><input type="radio" name="smode" checked={saleMode === 'credit_agent' || saleMode === 'credit'} onChange={()=>setSaleMode('credit_agent')} className="w-5 h-5 accent-blue-900" /> قەرز بۆ بریکار</label>
+            <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 bg-slate-50 py-2 px-3 rounded-lg"><input type="radio" name="smode" checked={saleMode === 'credit_company'} onChange={()=>setSaleMode('credit_company')} className="w-5 h-5 accent-blue-900" /> قەرز بۆ کۆمپانیا</label>
           </div>
 
           <form key={`${editingId || 'new'}-${saleMode}`} onSubmit={handleSaveSale} className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 items-end">
             
-            {saleMode === 'credit' ? (
+            {saleMode === 'credit_agent' || saleMode === 'credit' ? (
               <div className="lg:col-span-2">
                 <label className="block text-sm mb-1 text-slate-600">ناوی بریکار</label>
                 <select required name="agentId" defaultValue={saleToEdit?.agentId} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900">
                   <option value="">هەڵبژێرە...</option>
                   {agents.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
+                </select>
+              </div>
+            ) : saleMode === 'credit_company' ? (
+              <div className="lg:col-span-2">
+                <label className="block text-sm mb-1 text-slate-600">ناوی کۆمپانیا</label>
+                <select required name="companyId" defaultValue={saleToEdit?.companyId} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900">
+                  <option value="">هەڵبژێرە...</option>
+                  {companies.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
               </div>
             ) : (
@@ -1308,7 +1342,7 @@ export default function App() {
               </>
             )}
             
-            <div className="md:col-span-4 lg:col-span-6 bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2 space-y-3">
+            <div className="md:col-span-4 lg:col-span-6 bg-blue-50 p-4 rounded-xl border border-slate-200 mt-2 space-y-3">
                <h4 className="font-bold text-slate-700 mb-2 border-b pb-2">لیستی کاڵاکان</h4>
                {saleItems.map((item, index) => (
                    <div key={item.id} className="flex flex-col sm:flex-row gap-3 sm:items-end p-3 sm:p-0 border sm:border-0 rounded-lg sm:rounded-none bg-white sm:bg-transparent">
@@ -1335,7 +1369,7 @@ export default function App() {
                    </div>
                ))}
                <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-4">
-                  <button type="button" onClick={addSaleItem} className="w-full sm:w-auto text-sm font-bold text-blue-700 bg-blue-100 hover:bg-blue-200 px-4 py-2.5 rounded-lg transition-colors">+ زیادکردنی کاڵای تر</button>
+                  <button type="button" onClick={addSaleItem} className="w-full sm:w-auto text-sm font-bold text-blue-900 bg-blue-100 hover:bg-blue-200 px-4 py-2.5 rounded-lg transition-colors">+ زیادکردنی کاڵای تر</button>
                   <div className="text-left font-black text-xl text-blue-900 bg-white px-4 py-2 rounded-lg border shadow-sm w-full sm:w-auto text-center">کۆی گشتی: ${saleItems.reduce((sum, item) => sum + (Number(item.qty) * Number(item.unitPrice)), 0).toFixed(2)}</div>
                </div>
             </div>
@@ -1347,7 +1381,7 @@ export default function App() {
               </>
             )}
 
-            {saleMode === 'credit' && (
+            {(saleMode === 'credit_agent' || saleMode === 'credit' || saleMode === 'credit_company') && (
               <div className="lg:col-span-2"><label className="block text-sm mb-1 text-slate-600">ماوەی دانەوە (ڕۆژ)</label><input required type="number" name="creditDays" min="1" defaultValue="7" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900 font-bold text-blue-900" /></div>
             )}
 
@@ -1355,20 +1389,21 @@ export default function App() {
             
             <div className="md:col-span-6 flex gap-2 mt-2">
               <button type="submit" className="flex-1 bg-blue-900 hover:bg-blue-800 text-white p-3 rounded-lg font-bold transition-colors">{editingId ? 'نوێکردنەوە و پاشەکەوتکردن' : 'تۆمارکردنی فرۆشتن'}</button>
-              {editingId && <button type="button" onClick={() => {setEditingId(null); setSaleItems([{ id: Date.now(), itemName: '', qty: 1, unitPrice: '' }])}} className="bg-slate-400 text-white p-3 rounded-lg transition-colors">بەتاڵ</button>}
+              {editingId && <button type="button" onClick={() => {setEditingId(null); setSaleItems([{ id: Date.now(), itemName: '', qty: 1, unitPrice: '' }])}} className="bg-slate-400 text-white p-3 rounded-lg transition-colors hover:bg-slate-500">بەتاڵ</button>}
             </div>
           </form>
         </div>
         <div className="bg-white rounded-xl shadow-sm overflow-x-auto border border-slate-200">
           <table className="w-full text-right whitespace-nowrap min-w-[800px]">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ژ.پ / جۆر</th><th className="p-3 md:p-4">کڕیار/بریکار</th><th className="p-3 md:p-4">کاڵاکان</th><th className="p-3 md:p-4">کۆی نرخ</th><th className="p-3 md:p-4">وەرگیراو</th><th className="p-3 md:p-4">ماوە(قەرز)</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
+            <thead className="bg-blue-50 border-b border-slate-200 text-slate-700"><tr><th className="p-3 md:p-4">ژ.پ / جۆر</th><th className="p-3 md:p-4">کڕیار/بریکار/کۆمپانیا</th><th className="p-3 md:p-4">کاڵاکان</th><th className="p-3 md:p-4">کۆی نرخ</th><th className="p-3 md:p-4">وەرگیراو</th><th className="p-3 md:p-4">ماوە(قەرز)</th><th className="p-3 md:p-4">کردارەکان</th></tr></thead>
             <tbody>
               {sales.map(s => {
                 const paid = getSalePaidAmount(s.id);
                 const balance = s.price - paid;
                 const isInst = s.saleType === 'installment';
                 const isCash = s.saleType === 'cash';
-                const typeBadge = isCash ? 'کاش' : (isInst ? 'قیست' : 'بریکار');
+                const isComp = s.saleType === 'credit_company';
+                const typeBadge = isCash ? 'کاش' : (isInst ? 'قیست' : (isComp ? 'کۆمپانیا' : 'بریکار'));
                 const itemsList = s.items || [{ itemName: s.itemName }];
                 return (
                 <tr key={s.id} className="border-b border-slate-100 hover:bg-slate-50">
@@ -1378,10 +1413,10 @@ export default function App() {
                   <td className="p-3 md:p-4 font-bold text-blue-900">${s.price.toFixed(2)}</td><td className="p-3 md:p-4 text-emerald-600">${paid.toFixed(2)}</td><td className="p-3 md:p-4 text-orange-600 font-bold">${balance.toFixed(2)}</td>
                   <td className="p-3 md:p-4 flex gap-2">
                     {!isCash && <button onClick={() => setViewingInstallments(s.id)} className="bg-blue-50 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-100" title="وردەکاری هەژمار">وردەکاری</button>}
-                    {isInst && <button onClick={() => { setViewingDocuments(s); setSelectedDocs((s.documents || []).map(d => typeof d === 'string' ? {name:d, fileUrl:null} : d)); }} className="text-blue-900 bg-blue-50 hover:bg-blue-100 p-2 rounded-full" title="بەڵگەنامەکان"><IconDocs /></button>}
-                    {isInst && <button onClick={() => printContract(s)} className="text-slate-800 bg-slate-100 hover:bg-slate-200 p-2 rounded-full" title="چاپکردنی گرێبەست"><IconContract /></button>}
+                    {isInst && <button onClick={() => { setViewingDocuments(s); setSelectedDocs((s.documents || []).map(d => typeof d === 'string' ? {name:d, fileUrl:null} : d)); }} className="text-blue-900 bg-blue-100 hover:bg-blue-200 p-2 rounded-full" title="بەڵگەنامەکان"><IconDocs /></button>}
+                    {isInst && <button onClick={() => printContract(s)} className="text-slate-900 bg-slate-100 hover:bg-slate-200 p-2 rounded-full" title="چاپکردنی گرێبەست"><IconContract /></button>}
                     <button onClick={() => printSale(s)} className="text-slate-600 bg-slate-100 hover:bg-slate-200 p-2 rounded-full" title="چاپکردنی پسوڵە"><IconPrinter /></button>
-                    <button onClick={() => handleEditSale(s)} className="text-emerald-700 bg-emerald-50 hover:bg-emerald-100 p-2 rounded-full" title="دەستکاریکردن"><IconEdit /></button>
+                    <button onClick={() => handleEditSale(s)} className="text-blue-900 bg-blue-100 hover:bg-blue-200 p-2 rounded-full" title="دەستکاریکردن"><IconEdit /></button>
                     <button onClick={() => deleteSale(s.id)} className="text-rose-600 bg-rose-50 hover:bg-rose-100 p-2 rounded-full"><IconTrash /></button>
                   </td>
                 </tr>
@@ -1412,42 +1447,42 @@ export default function App() {
         {editingPaymentId && (
           <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl flex justify-between items-center">
             <span className="font-bold text-orange-800">تۆ لە دۆخی دەستکاریکردنی پسوڵەی ژمارە ({pToEdit.receiptNo}) دایت!</span>
-            <button onClick={() => setEditingPaymentId(null)} className="text-sm bg-orange-200 px-3 py-1 rounded text-orange-900 transition-colors">پاشگەزبوونەوە</button>
+            <button onClick={() => setEditingPaymentId(null)} className="text-sm bg-orange-200 px-3 py-1 rounded text-orange-900 transition-colors hover:bg-orange-300">پاشگەزبوونەوە</button>
           </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {/* وەرگرتنی قیست */}
-          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingReceiveInst ? 'ring-2 ring-orange-500' : 'border-t-4 border-t-emerald-500'}`}>
-            <h3 className="font-bold text-emerald-800 mb-4 flex items-center gap-2"><IconDollarSign/> {isEditingReceiveInst ? 'دەستکاری قیست' : 'وەرگرتنی قیست'}</h3>
+          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingReceiveInst ? 'ring-2 ring-blue-500' : 'border-t-4 border-t-blue-500'}`}>
+            <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2"><IconDollarSign/> {isEditingReceiveInst ? 'دەستکاری قیست' : 'وەرگرتنی قیست'}</h3>
             <form key={`ri-${editingPaymentId || 'new'}`} onSubmit={e => handlePaymentSubmit(e, 'installment')} className="space-y-4 flex-1 flex flex-col">
-              <select required name="refId" defaultValue={isEditingReceiveInst ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-emerald-500">
+              <select required name="refId" defaultValue={isEditingReceiveInst ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900">
                 <option value="">کڕیار هەڵبژێرە...</option>
                 {(isEditingReceiveInst ? sales.filter(s=>s.saleType==='installment') : activeSales).map(s => <option key={s.id} value={s.id}>{s.customerName} (ماوە: ${(s.price - getSalePaidAmount(s.id)).toFixed(2)})</option>)}
               </select>
-              <input required type="number" step="any" name="amount" defaultValue={isEditingReceiveInst ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی وەرگیراو $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-emerald-500" />
-              <input name="note" defaultValue={isEditingReceiveInst ? pToEdit?.note : ''} placeholder="تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-emerald-500" />
-              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingCompany || isEditingAgent || isEditingOffice} className="w-full bg-emerald-600 text-white p-2.5 rounded-lg font-bold hover:bg-emerald-700 transition-colors">تۆمارکردن</button></div>
+              <input required type="number" step="any" name="amount" defaultValue={isEditingReceiveInst ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی وەرگیراو $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
+              <input name="note" defaultValue={isEditingReceiveInst ? pToEdit?.note : ''} placeholder="تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
+              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingCompany || isEditingAgent || isEditingOffice} className="w-full bg-blue-900 text-white p-2.5 rounded-lg font-bold hover:bg-blue-800 transition-colors">تۆمارکردن</button></div>
             </form>
           </div>
 
           {/* مامەڵەی بریکارەکان */}
-          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingAgent ? 'ring-2 ring-orange-500' : 'border-t-4 border-t-blue-500'}`}>
-            <h3 className="font-bold text-blue-800 mb-4 flex items-center gap-2"><IconAgent/> {isEditingAgent ? 'دەستکاری پارەی بریکار' : 'مامەڵەی بریکارەکان'}</h3>
+          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingAgent ? 'ring-2 ring-blue-500' : 'border-t-4 border-t-slate-900'}`}>
+            <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2"><IconAgent/> {isEditingAgent ? 'دەستکاری پارەی بریکار' : 'مامەڵەی بریکارەکان'}</h3>
             <form key={`ra-${editingPaymentId || 'new'}`} onSubmit={e => handlePaymentSubmit(e, 'agent')} className="space-y-4 flex-1 flex flex-col">
-              <select required name="txDirection" value={agentTxDir} onChange={e=>setAgentTxDir(e.target.value)} className="w-full border border-slate-300 p-2.5 rounded-lg bg-blue-50 font-bold text-blue-900 focus:ring-2 focus:ring-blue-500">
+              <select required name="txDirection" value={agentTxDir} onChange={e=>setAgentTxDir(e.target.value)} className="w-full border border-slate-300 p-2.5 rounded-lg bg-blue-50 font-bold text-blue-900 focus:ring-2 focus:ring-blue-900">
                  <option value="receive">وەرگرتنی پارە (لە بریکار)</option>
                  <option value="pay">پێدانی پارە (بە بریکار)</option>
               </select>
-              <select required name="refId" defaultValue={isEditingAgent ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500">
+              <select required name="refId" defaultValue={isEditingAgent ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900">
                 <option value="">ناوی بریکار...</option>
                 {agents.map(a => <option key={a.id} value={a.id}>{a.name} (قەرزی لایە: ${getAgentDebt(a.id).toFixed(2)})</option>)}
               </select>
-              <input required type="number" step="any" name="amount" defaultValue={isEditingAgent ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی پارە $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500" />
+              <input required type="number" step="any" name="amount" defaultValue={isEditingAgent ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی پارە $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
               
               {agentTxDir === 'pay' && !isEditingAgent && (
                 <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                   <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 text-sm mb-2"><input type="checkbox" name="viaOffice" checked={viaOfficeAgent} onChange={e=>setViaOfficeAgent(e.target.checked)} className="w-4 h-4 accent-blue-600" /> پارەدان لەڕێی نوسینگە</label>
+                   <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 text-sm mb-2"><input type="checkbox" name="viaOffice" checked={viaOfficeAgent} onChange={e=>setViaOfficeAgent(e.target.checked)} className="w-4 h-4 accent-blue-900" /> پارەدان لەڕێی نوسینگە</label>
                    {viaOfficeAgent && (
                      <div className="space-y-2 mt-2">
                         <select required name="officeId" className="w-full border border-slate-300 p-2 rounded-lg text-sm">
@@ -1460,28 +1495,28 @@ export default function App() {
                 </div>
               )}
 
-              <input name="note" defaultValue={isEditingAgent ? pToEdit?.note : ''} placeholder="تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500" />
-              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingCompany || isEditingReceiveInst || isEditingOffice} className="w-full bg-blue-900 text-white p-2.5 rounded-lg font-bold hover:bg-blue-800 transition-colors">تۆمارکردن</button></div>
+              <input name="note" defaultValue={isEditingAgent ? pToEdit?.note : ''} placeholder="تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
+              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingCompany || isEditingReceiveInst || isEditingOffice} className="w-full bg-slate-900 text-white p-2.5 rounded-lg font-bold hover:bg-slate-800 transition-colors">تۆمارکردن</button></div>
             </form>
           </div>
 
           {/* مامەڵەی کۆمپانیاکان */}
-          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingCompany ? 'ring-2 ring-orange-500' : 'border-t-4 border-t-rose-500'}`}>
-            <h3 className="font-bold text-rose-800 mb-4 flex items-center gap-2"><IconBuilding/> {isEditingCompany ? 'دەستکاری پارەی کۆمپانیا' : 'مامەڵەی کۆمپانیاکان'}</h3>
+          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingCompany ? 'ring-2 ring-blue-500' : 'border-t-4 border-t-black'}`}>
+            <h3 className="font-bold text-black mb-4 flex items-center gap-2"><IconBuilding/> {isEditingCompany ? 'دەستکاری پارەی کۆمپانیا' : 'مامەڵەی کۆمپانیاکان'}</h3>
             <form key={`pay-${editingPaymentId || 'new'}`} onSubmit={e => handlePaymentSubmit(e, 'company')} className="space-y-4 flex-1 flex flex-col">
-              <select required name="txDirection" value={compTxDir} onChange={e=>setCompTxDir(e.target.value)} className="w-full border border-slate-300 p-2.5 rounded-lg bg-rose-50 font-bold text-rose-900 focus:ring-2 focus:ring-rose-500">
+              <select required name="txDirection" value={compTxDir} onChange={e=>setCompTxDir(e.target.value)} className="w-full border border-slate-300 p-2.5 rounded-lg bg-blue-50 font-bold text-blue-900 focus:ring-2 focus:ring-blue-900">
                  <option value="pay">پێدانی پارە (بە کۆمپانیا)</option>
                  <option value="receive">وەرگرتنی پارە (لە کۆمپانیا)</option>
               </select>
-              <select required name="refId" defaultValue={isEditingCompany ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-rose-500">
+              <select required name="refId" defaultValue={isEditingCompany ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900">
                 <option value="">کۆمپانیا هەڵبژێرە...</option>
                 {companies.map(c => <option key={c.id} value={c.id}>{c.name} (قەرز لەسەرمان: $${getCompanyDebt(c.id).toFixed(2)})</option>)}
               </select>
-              <input required type="number" step="any" name="amount" defaultValue={isEditingCompany ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی پارە $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-rose-500" />
+              <input required type="number" step="any" name="amount" defaultValue={isEditingCompany ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی پارە $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
               
               {compTxDir === 'pay' && !isEditingCompany && (
                 <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                   <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 text-sm mb-2"><input type="checkbox" name="viaOffice" checked={viaOfficeComp} onChange={e=>setViaOfficeComp(e.target.checked)} className="w-4 h-4 accent-rose-600" /> پارەدان لەڕێی نوسینگە</label>
+                   <label className="flex items-center gap-2 cursor-pointer font-bold text-slate-700 text-sm mb-2"><input type="checkbox" name="viaOffice" checked={viaOfficeComp} onChange={e=>setViaOfficeComp(e.target.checked)} className="w-4 h-4 accent-black" /> پارەدان لەڕێی نوسینگە</label>
                    {viaOfficeComp && (
                      <div className="space-y-2 mt-2">
                         <select required name="officeId" className="w-full border border-slate-300 p-2 rounded-lg text-sm">
@@ -1494,26 +1529,26 @@ export default function App() {
                 </div>
               )}
 
-              <input name="note" defaultValue={isEditingCompany ? pToEdit?.note : ''} placeholder="ڕەقەم حەواڵە یان تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-rose-500" />
-              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingReceiveInst || isEditingAgent || isEditingOffice} className="w-full bg-rose-600 text-white p-2.5 rounded-lg font-bold hover:bg-rose-700 transition-colors">تۆمارکردن</button></div>
+              <input name="note" defaultValue={isEditingCompany ? pToEdit?.note : ''} placeholder="ڕەقەم حەواڵە یان تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
+              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingReceiveInst || isEditingAgent || isEditingOffice} className="w-full bg-black text-white p-2.5 rounded-lg font-bold hover:bg-slate-800 transition-colors">تۆمارکردن</button></div>
             </form>
           </div>
 
           {/* مامەڵەی نوسینگەکان (حەواڵە) */}
-          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingOffice ? 'ring-2 ring-orange-500' : 'border-t-4 border-t-orange-500'}`}>
-            <h3 className="font-bold text-orange-800 mb-4 flex items-center gap-2"><IconOffice/> {isEditingOffice ? 'دەستکاری پارەی نوسینگە' : 'مامەڵەی نوسینگەکان'}</h3>
+          <div className={`bg-white p-4 md:p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col ${isEditingOffice ? 'ring-2 ring-blue-500' : 'border-t-4 border-t-blue-500'}`}>
+            <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2"><IconOffice/> {isEditingOffice ? 'دەستکاری پارەی نوسینگە' : 'مامەڵەی نوسینگەکان'}</h3>
             <form key={`off-${editingPaymentId || 'new'}`} onSubmit={e => handlePaymentSubmit(e, 'office')} className="space-y-4 flex-1 flex flex-col">
-              <select required name="txDirection" defaultValue={isEditingOffice ? (pToEdit.type === 'pay_office_debt' ? 'pay' : 'receive') : 'receive'} className="w-full border border-slate-300 p-2.5 rounded-lg bg-orange-50 font-bold text-orange-900 focus:ring-2 focus:ring-orange-500">
+              <select required name="txDirection" defaultValue={isEditingOffice ? (pToEdit.type === 'pay_office_debt' ? 'pay' : 'receive') : 'receive'} className="w-full border border-slate-300 p-2.5 rounded-lg bg-blue-50 font-bold text-blue-900 focus:ring-2 focus:ring-blue-900">
                  <option value="receive">وەرگرتنی پارە (لە نوسینگە)</option>
                  <option value="pay">پێدانی پارە (بە نوسینگە)</option>
               </select>
-              <select required name="refId" defaultValue={isEditingOffice ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-orange-500">
+              <select required name="refId" defaultValue={isEditingOffice ? pToEdit?.refId : ''} className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900">
                 <option value="">نوسینگە هەڵبژێرە...</option>
                 {offices.map(o => <option key={o.id} value={o.id}>{o.name} (قەرزاریین: $${getOfficeDebt(o.id).toFixed(2)})</option>)}
               </select>
-              <input required type="number" step="any" name="amount" defaultValue={isEditingOffice ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی پارە $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-orange-500" />
-              <input name="note" defaultValue={isEditingOffice ? pToEdit?.note : ''} placeholder="تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-orange-500" />
-              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingCompany || isEditingAgent || isEditingReceiveInst} className="w-full bg-orange-500 text-white p-2.5 rounded-lg font-bold hover:bg-orange-600 transition-colors">تۆمارکردن</button></div>
+              <input required type="number" step="any" name="amount" defaultValue={isEditingOffice ? Math.abs(pToEdit.amount) : ''} placeholder="بڕی پارە $" className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
+              <input name="note" defaultValue={isEditingOffice ? pToEdit?.note : ''} placeholder="تێبینی..." className="w-full border border-slate-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-900" />
+              <div className="mt-auto pt-4"><button type="submit" disabled={isEditingCompany || isEditingAgent || isEditingReceiveInst} className="w-full bg-blue-900 text-white p-2.5 rounded-lg font-bold hover:bg-blue-800 transition-colors">تۆمارکردن</button></div>
             </form>
           </div>
         </div>
@@ -1534,19 +1569,19 @@ export default function App() {
                   <td className="p-3 font-bold">
                     {tx.type === 'receive_installment' && <span className="text-emerald-600">وەرگرتنی قیست</span>}
                     {tx.type === 'receive_agent_payment' && <span className="text-blue-600">وەرگرتن لە بریکار</span>}
-                    {tx.type === 'pay_agent_payment' && <span className="text-rose-600">پێدان بە بریکار</span>}
-                    {tx.type === 'pay_company_debt' && <span className="text-rose-600">پێدانی قەرز کۆمپانیا</span>}
-                    {tx.type === 'receive_company_payment' && <span className="text-emerald-600">وەرگرتن لە کۆمپانیا</span>}
-                    {tx.type === 'receive_office_loan' && <span className="text-orange-600">وەرگرتن لە نوسینگە</span>}
-                    {tx.type === 'pay_office_debt' && <span className="text-rose-600">پێدان بە نوسینگە</span>}
+                    {tx.type === 'pay_agent_payment' && <span className="text-slate-900">پێدان بە بریکار</span>}
+                    {tx.type === 'pay_company_debt' && <span className="text-black">پێدانی قەرز کۆمپانیا</span>}
+                    {tx.type === 'receive_company_payment' && <span className="text-blue-600">وەرگرتن لە کۆمپانیا</span>}
+                    {tx.type === 'receive_office_loan' && <span className="text-blue-600">وەرگرتن لە نوسینگە</span>}
+                    {tx.type === 'pay_office_debt' && <span className="text-slate-900">پێدان بە نوسینگە</span>}
                   </td>
                   <td className="p-3 text-slate-700">{tx.desc} <span className="text-slate-400">({tx.note})</span></td>
-                  <td className="p-3 font-bold" dir="ltr"><span className={(tx.type.includes('receive') && tx.type !== 'receive_office_loan') ? 'text-emerald-600' : 'text-rose-600'}>${Math.abs(tx.amount).toFixed(2)}</span></td>
+                  <td className="p-3 font-bold" dir="ltr"><span className={(tx.type.includes('receive') && tx.type !== 'receive_office_loan') ? 'text-emerald-600' : 'text-slate-900'}>${Math.abs(tx.amount).toFixed(2)}</span></td>
                   <td className="p-3 flex gap-2">
                     <button onClick={() => printPaymentReceipt(tx)} className="bg-slate-100 text-slate-700 hover:bg-slate-200 p-2 rounded-lg text-xs font-semibold"><IconPrinter /></button>
                     {/* Hiding edit for hawala auto-generated txs to prevent bugs. Just delete and recreate if needed */}
-                    {(!tx.desc.includes('حەواڵە')) && <button onClick={() => { setEditingPaymentId(tx.id); window.scrollTo({top:0, behavior:'smooth'}); }} className="bg-orange-50 text-orange-600 hover:bg-orange-100 p-2 rounded-lg"><IconEdit /></button>}
-                    <button onClick={() => deletePaymentTx(tx.id)} className="bg-rose-50 text-rose-600 hover:bg-rose-100 p-2 rounded-lg"><IconTrash /></button>
+                    {(!tx.desc.includes('حەواڵە')) && <button onClick={() => { setEditingPaymentId(tx.id); window.scrollTo({top:0, behavior:'smooth'}); }} className="bg-blue-50 text-blue-900 hover:bg-blue-100 p-2 rounded-lg"><IconEdit /></button>}
+                    <button onClick={() => deletePaymentTx(tx.id)} className="bg-slate-100 text-black hover:bg-slate-200 p-2 rounded-lg"><IconTrash /></button>
                   </td>
                 </tr>
               ))}
@@ -1584,15 +1619,15 @@ export default function App() {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-blue-50 p-5 rounded-xl border border-blue-200">
-             <p className="text-sm text-blue-800 font-bold">سەرمایەی خاوەن کار (دانراو)</p>
+             <p className="text-sm text-blue-900 font-bold">سەرمایەی خاوەن کار (دانراو)</p>
              <h3 className="text-2xl font-bold text-blue-900">${totalInvested.toFixed(2)}</h3>
           </div>
-          <div className="bg-emerald-50 p-5 rounded-xl border border-emerald-200">
-             <p className="text-sm text-emerald-800 font-bold">پوختەی قازانج (دوای خەرجی)</p>
-             <h3 className="text-2xl font-bold text-emerald-900">${netProfit.toFixed(2)}</h3>
+          <div className="bg-slate-100 p-5 rounded-xl border border-slate-300">
+             <p className="text-sm text-slate-800 font-bold">پوختەی قازانج (دوای خەرجی)</p>
+             <h3 className="text-2xl font-bold text-slate-900">${netProfit.toFixed(2)}</h3>
           </div>
-          <div className="bg-orange-500 p-5 rounded-xl border border-orange-600 shadow-md">
-             <p className="text-sm text-orange-100 font-bold">کۆی سەرمایەی بنچینەیی ئێستا</p>
+          <div className="bg-blue-900 p-5 rounded-xl border border-blue-800 shadow-md">
+             <p className="text-sm text-blue-100 font-bold">کۆی سەرمایەی بنچینەیی ئێستا</p>
              <h3 className="text-2xl font-bold text-white">${(totalInvested + netProfit).toFixed(2)}</h3>
           </div>
         </div>
@@ -1629,24 +1664,24 @@ export default function App() {
                   <td className="p-4 font-bold text-slate-400">{tx.receiptNo || '-'}</td>
                   <td className="p-4 text-slate-500" dir="ltr">{tx.date}</td>
                   <td className="p-4">
-                    {tx.type === 'expense' && <span className="text-rose-600 font-medium">خەرجی</span>}
+                    {tx.type === 'expense' && <span className="text-slate-900 font-medium">خەرجی</span>}
                     {tx.type === 'capital_add' && <span className="text-blue-600 font-medium">سەرمایە (زیاد)</span>}
-                    {tx.type === 'capital_remove' && <span className="text-orange-600 font-medium">سەرمایە (کەم)</span>}
-                    {(tx.type === 'purchase' || tx.type === 'purchase_cash') && <span className="text-rose-600 font-medium">کڕین (کاش)</span>}
-                    {tx.type === 'purchase_debt' && <span className="text-rose-800 font-medium">کڕین (قەرز)</span>}
+                    {tx.type === 'capital_remove' && <span className="text-slate-900 font-medium">سەرمایە (کەم)</span>}
+                    {(tx.type === 'purchase' || tx.type === 'purchase_cash') && <span className="text-slate-900 font-medium">کڕین (کاش)</span>}
+                    {tx.type === 'purchase_debt' && <span className="text-black font-medium">کڕین (قەرز)</span>}
                     {tx.type === 'sale_advance' && <span className="text-blue-600 font-medium">پێشەکی فرۆشتن</span>}
                     {tx.type === 'sale_cash' && <span className="text-blue-600 font-medium">فرۆشتنی کاش</span>}
                     {tx.type === 'receive_installment' && <span className="text-emerald-600 font-bold">وەرگرتنی قیست</span>}
                     {tx.type === 'receive_agent_payment' && <span className="text-blue-600 font-bold">وەرگرتن لە بریکار</span>}
-                    {tx.type === 'pay_agent_payment' && <span className="text-rose-600 font-bold">پێدان بە بریکار</span>}
-                    {tx.type === 'pay_company_debt' && <span className="text-rose-600 font-bold">پێدانی قەرز کۆمپانیا</span>}
-                    {tx.type === 'receive_company_payment' && <span className="text-emerald-600 font-bold">وەرگرتن لە کۆمپانیا</span>}
-                    {tx.type === 'receive_office_loan' && <span className="text-orange-600 font-bold">قەرزی نوسینگە (حەواڵە)</span>}
-                    {tx.type === 'pay_office_debt' && <span className="text-rose-600 font-bold">پێدانەوەی قەرزی نوسینگە</span>}
+                    {tx.type === 'pay_agent_payment' && <span className="text-slate-900 font-bold">پێدان بە بریکار</span>}
+                    {tx.type === 'pay_company_debt' && <span className="text-slate-900 font-bold">پێدانی قەرز کۆمپانیا</span>}
+                    {tx.type === 'receive_company_payment' && <span className="text-blue-600 font-bold">وەرگرتن لە کۆمپانیا</span>}
+                    {tx.type === 'receive_office_loan' && <span className="text-blue-600 font-bold">قەرزی نوسینگە (حەواڵە)</span>}
+                    {tx.type === 'pay_office_debt' && <span className="text-slate-900 font-bold">پێدانەوەی قەرزی نوسینگە</span>}
                   </td>
                   <td className="p-4 text-slate-700">{tx.desc}</td>
                   <td className="p-4 text-slate-500">{tx.note}</td>
-                  <td className="p-4 font-bold" dir="ltr"><span className={tx.amount > 0 ? 'text-blue-600' : 'text-rose-600'}>{tx.amount > 0 ? '+':''}{tx.amount.toFixed(2)}</span></td>
+                  <td className="p-4 font-bold" dir="ltr"><span className={tx.amount > 0 ? 'text-blue-600' : 'text-slate-900'}>{tx.amount > 0 ? '+':''}{tx.amount.toFixed(2)}</span></td>
                 </tr>
               ))}
             </tbody>
@@ -1682,7 +1717,7 @@ export default function App() {
     }).filter(s => s.balance <= 0);
 
     // Overdue Agent Debts 
-    const overdueAgents = sales.filter(s => s.saleType === 'credit' && s.dueDate < today && (s.price - getSalePaidAmount(s.id)) > 0).map(s => ({
+    const overdueAgents = sales.filter(s => (s.saleType === 'credit' || s.saleType === 'credit_agent' || s.saleType === 'credit_company') && s.dueDate < today && (s.price - getSalePaidAmount(s.id)) > 0).map(s => ({
        ...s, paid: getSalePaidAmount(s.id), balance: s.price - getSalePaidAmount(s.id)
     }));
 
@@ -1741,7 +1776,7 @@ export default function App() {
       let matchedName = searchTarget;
       let isCompany = companies.some(c => c.name === matchedName);
       let isAgent = agents.some(a => a.name === matchedName);
-      let isCustomer = sales.some(s => s.customerName === matchedName && s.saleType !== 'credit');
+      let isCustomer = sales.some(s => s.customerName === matchedName && s.saleType !== 'credit' && s.saleType !== 'credit_agent' && s.saleType !== 'credit_company');
       let isOffice = offices.some(o => o.name === matchedName);
 
       // هێزی گەڕان بەپێی مۆبایل یان ژمارەی پسوڵە
@@ -1767,16 +1802,21 @@ export default function App() {
            const names = (p.items || [{ itemName: p.itemName }]).map(i=>i.itemName).join('، ');
            entries.push({ date: p.date, id: p.id, type: 'کڕین (قەرز)', desc: `کاڵا: ${names}`, note: p.note, debit: 0, credit: p.total, receiptNo: p.receiptNo });
         });
-        capitalTx.filter(tx => tx.type === 'pay_company_debt' && companies.find(c=>c.name===matchedName)?.id === tx.refId).forEach(tx => {
+        sales.filter(s => s.customerName === matchedName && s.saleType === 'credit_company').forEach(s => {
+           const names = (s.items || [{ itemName: s.itemName }]).map(i=>i.itemName).join('، ');
+           entries.push({ date: s.date, id: s.id, type: 'فرۆشتن (قەرز)', desc: `کاڵا: ${names}`, note: s.note, debit: s.price, credit: 0, receiptNo: s.receiptNo });
+        });
+        const compId = companies.find(c => c.name === matchedName)?.id;
+        capitalTx.filter(tx => tx.type === 'pay_company_debt' && tx.refId === compId).forEach(tx => {
            entries.push({ date: tx.date, id: tx.id, type: 'پێدانی قەرز', desc: 'پێدانی پارە بە کۆمپانیا', note: tx.note, debit: Math.abs(tx.amount), credit: 0, receiptNo: tx.receiptNo });
         });
-        capitalTx.filter(tx => tx.type === 'receive_company_payment' && companies.find(c=>c.name===matchedName)?.id === tx.refId).forEach(tx => {
+        capitalTx.filter(tx => tx.type === 'receive_company_payment' && tx.refId === compId).forEach(tx => {
            entries.push({ date: tx.date, id: tx.id, type: 'وەرگرتن لە کۆمپانیا', desc: 'گەڕانەوەی پارە', note: tx.note, debit: 0, credit: Math.abs(tx.amount), receiptNo: tx.receiptNo });
         });
-      } else if (isCustomerOrAgent) {
+      } else if (isCustomer || isAgent) {
         sales.filter(s => s.customerName === matchedName).forEach(s => {
            const names = (s.items || [{ itemName: s.itemName }]).map(i=>i.itemName).join('، ');
-           entries.push({ date: s.date, id: s.id, type: s.saleType === 'cash' ? 'فرۆشتن (کاش)' : (s.saleType === 'credit' ? 'فرۆشتن (قەرز)' : 'فرۆشتن (قیست)'), desc: `کاڵا: ${names}`, note: s.note, debit: s.price, credit: s.saleType === 'cash' ? s.price : 0, receiptNo: s.receiptNo });
+           entries.push({ date: s.date, id: s.id, type: s.saleType === 'cash' ? 'فرۆشتن (کاش)' : (s.saleType === 'credit' || s.saleType === 'credit_agent' ? 'فرۆشتن (قەرز)' : 'فرۆشتن (قیست)'), desc: `کاڵا: ${names}`, note: s.note, debit: s.price, credit: s.saleType === 'cash' ? s.price : 0, receiptNo: s.receiptNo });
         });
         const saleIds = sales.filter(s => s.customerName === matchedName).map(s => s.id);
         const agentId = agents.find(a => a.name === matchedName)?.id;
@@ -1820,7 +1860,7 @@ export default function App() {
         return { ...e, balance: runningBalance };
       });
 
-      return { entries, name: matchedName, isResolved: isCompany || isCustomerOrAgent || isOffice };
+      return { entries, name: matchedName, isResolved: isCompany || isCustomer || isAgent || isOffice };
     };
 
     const statementResult = generateStatementData();
@@ -1854,20 +1894,20 @@ export default function App() {
         <h2 className="text-2xl font-bold text-slate-800">ڕاپۆرتەکان و کەشف حساب</h2>
         
         <div className="flex flex-wrap gap-2 mb-6">
-          <button onClick={() => setReportTab('active_accounts')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='active_accounts'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>هەژماری قیستەکان</button>
-          <button onClick={() => setReportTab('late')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='late'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>قیستە دواکەوتووەکان</button>
-          <button onClick={() => setReportTab('agents_all')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='agents_all'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>بریکارەکان</button>
-          <button onClick={() => setReportTab('agents_late')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='agents_late'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>قەرزی دواکەوتووی بریکارەکان</button>
-          <button onClick={() => setReportTab('companies')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='companies'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>کۆمپانیاکان</button>
-          <button onClick={() => setReportTab('offices')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='offices'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>نوسینگەکان</button>
+          <button onClick={() => setReportTab('active_accounts')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='active_accounts'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>هەژماری قیستەکان</button>
+          <button onClick={() => setReportTab('late')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='late'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>قیستە دواکەوتووەکان</button>
+          <button onClick={() => setReportTab('agents_all')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='agents_all'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>بریکارەکان</button>
+          <button onClick={() => setReportTab('agents_late')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='agents_late'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>قەرزی دواکەوتووەکان</button>
+          <button onClick={() => setReportTab('companies')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='companies'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>کۆمپانیاکان</button>
+          <button onClick={() => setReportTab('offices')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='offices'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>نوسینگەکان</button>
           
           {loggedAppUser?.role === 'admin' && (
-            <button onClick={() => setReportTab('item_perf')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='item_perf'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>فرۆش و قازانجی کاڵا</button>
+            <button onClick={() => setReportTab('item_perf')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='item_perf'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>فرۆش و قازانجی کاڵا</button>
           )}
           {loggedAppUser?.role === 'admin' && (
-            <button onClick={() => setReportTab('cashbox')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='cashbox'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>سندوق</button>
+            <button onClick={() => setReportTab('cashbox')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='cashbox'?'bg-blue-900 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>سندوق</button>
           )}
-          <button onClick={() => setReportTab('statement')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='statement'?'bg-orange-500 text-white shadow-md':'bg-white text-slate-700 border hover:bg-slate-50'}`}>کەشف حساب</button>
+          <button onClick={() => setReportTab('statement')} className={`px-4 py-2.5 rounded-lg font-semibold transition-colors ${reportTab==='statement'?'bg-orange-500 text-white shadow-md':'bg-white text-slate-700 border hover:bg-blue-50'}`}>کەشف حساب</button>
         </div>
 
         {reportTab === 'cashbox' && loggedAppUser?.role === 'admin' && (
@@ -1922,13 +1962,13 @@ export default function App() {
           <div className="bg-white rounded-xl shadow-sm p-4 md:p-6 border border-slate-200">
             <button onClick={() => printTable('ڕاپۆرتی گشتی کۆمپانیاکان', 'tbl-companies')} className="mb-4 bg-slate-100 px-4 py-2 rounded-lg flex gap-2 font-medium"><IconPrinter/> چاپکردن</button>
             <div id="tbl-companies" className="overflow-x-auto">
-              <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl mb-4">
-                 <h3 className="text-lg font-bold text-orange-900">کۆی گشتی قەرزی کۆمپانیاکان (لەسەرمان): <span dir="ltr" className="text-xl md:text-2xl">${totalCompanyDebt.toFixed(2)}</span></h3>
+              <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl mb-4">
+                 <h3 className="text-lg font-bold text-blue-900">کۆی گشتی قەرزی کۆمپانیاکان: <span dir="ltr" className="text-xl md:text-2xl">${totalCompanyDebt.toFixed(2)}</span></h3>
               </div>
               <table className="w-full text-right border border-blue-200 min-w-[500px]">
-                <thead className="bg-blue-50 text-blue-900"><tr><th className="p-3 border border-blue-200">ناوی کۆمپانیا</th><th className="p-3 border border-blue-200">مۆبایل</th><th className="p-3 border border-blue-200">ناونیشان</th><th className="p-3 border border-blue-200">کۆی قەرز لەسەرمان</th></tr></thead>
+                <thead className="bg-blue-50 text-blue-900"><tr><th className="p-3 border border-blue-200">ناوی کۆمپانیا</th><th className="p-3 border border-blue-200">مۆبایل</th><th className="p-3 border border-blue-200">ناونیشان</th><th className="p-3 border border-blue-200">کۆی قەرز</th></tr></thead>
                 <tbody>
-                  {companiesStatus.map(c => (<tr key={c.id} className="border-b border-blue-100"><td className="p-3 border border-blue-200 font-semibold">{c.name}</td><td className="p-3 border border-blue-200">{c.phone}</td><td className="p-3 border border-blue-200">${c.address}</td><td className="p-3 border border-blue-200 text-orange-600 font-bold bg-orange-50/50">${c.debt.toFixed(2)}</td></tr>))}
+                  {companiesStatus.map(c => (<tr key={c.id} className="border-b border-blue-100"><td className="p-3 border border-blue-200 font-semibold">{c.name}</td><td className="p-3 border border-blue-200">{c.phone}</td><td className="p-3 border border-blue-200">${c.address}</td><td className="p-3 border border-blue-200 font-bold" dir="ltr">{c.debt > 0 ? <span className="text-rose-600">لەسەرمانە: $${c.debt.toFixed(2)}</span> : c.debt < 0 ? <span className="text-blue-600">قەرزارمانن: $${Math.abs(c.debt).toFixed(2)}</span> : <span className="text-slate-500">$0.00</span>}</td></tr>))}
                 </tbody>
               </table>
             </div>
@@ -1939,8 +1979,8 @@ export default function App() {
           <div className="bg-white rounded-xl shadow-sm p-4 md:p-6 border border-slate-200">
             <button onClick={() => printTable('ڕاپۆرتی گشتی نوسینگەکان (حەواڵە)', 'tbl-offices')} className="mb-4 bg-slate-100 px-4 py-2 rounded-lg flex gap-2 font-medium"><IconPrinter/> چاپکردن</button>
             <div id="tbl-offices" className="overflow-x-auto">
-              <div className="bg-orange-50 border border-orange-200 p-4 rounded-xl mb-4">
-                 <h3 className="text-lg font-bold text-orange-900">کۆی گشتی قەرزی نوسینگەکان (لەسەرمان): <span dir="ltr" className="text-xl md:text-2xl">${totalOfficesDebt.toFixed(2)}</span></h3>
+              <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl mb-4">
+                 <h3 className="text-lg font-bold text-blue-900">کۆی گشتی قەرزی نوسینگەکان (لەسەرمان): <span dir="ltr" className="text-xl md:text-2xl">${totalOfficesDebt.toFixed(2)}</span></h3>
               </div>
               <table className="w-full text-right border border-blue-200 min-w-[500px]">
                 <thead className="bg-blue-50 text-blue-900"><tr><th className="p-3 border border-blue-200">ناوی نوسینگە</th><th className="p-3 border border-blue-200">مۆبایل</th><th className="p-3 border border-blue-200">ناونیشان</th><th className="p-3 border border-blue-200">کۆی قەرز لەسەرمان</th></tr></thead>
@@ -1973,7 +2013,7 @@ export default function App() {
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200"><p className="text-sm text-slate-500 mb-1">کۆی فرۆشراو (دانە)</p><h3 className="text-xl md:text-2xl font-bold text-slate-800">{itemPerf.tQty}</h3></div>
                 <div className="bg-blue-50 p-4 rounded-xl border border-blue-200"><p className="text-sm text-blue-800 mb-1">کۆی داهاتی فرۆشتن</p><h3 className="text-xl md:text-2xl font-bold text-blue-900">${itemPerf.tSales.toFixed(2)}</h3></div>
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200"><p className="text-sm text-slate-500 mb-1">کۆی تێچووی کاڵاکان</p><h3 className="text-xl md:text-2xl font-bold text-slate-800">${itemPerf.tCost.toFixed(2)}</h3></div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200"><p className="text-sm text-slate-500 mb-1">پوختەی قازانج</p><h3 className={`text-xl md:text-2xl font-bold ${itemPerf.tProfit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>${itemPerf.tProfit.toFixed(2)}</h3></div>
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200"><p className="text-sm text-slate-500 mb-1">پوختەی قازانج</p><h3 className={`text-xl md:text-2xl font-bold ${itemPerf.tProfit >= 0 ? 'text-blue-600' : 'text-slate-900'}`}>${itemPerf.tProfit.toFixed(2)}</h3></div>
               </div>
 
               <table className="w-full text-right border border-slate-200 text-sm min-w-[700px]">
@@ -1983,12 +2023,12 @@ export default function App() {
                   {itemPerf.rows.map(r => (
                     <tr key={`${r.id}-${r.itemName}`} className="border-b hover:bg-slate-50">
                       <td className="p-3 border text-slate-500" dir="ltr">{r.date}</td>
-                      <td className="p-3 border font-medium text-slate-700">{r.saleType === 'cash' ? 'کاش' : (r.saleType === 'credit' ? 'بریکار' : 'قیست')} | {r.receiptNo}</td>
+                      <td className="p-3 border font-medium text-slate-700">{r.saleType === 'cash' ? 'کاش' : (r.saleType.includes('credit') ? 'قەرز' : 'قیست')} | {r.receiptNo}</td>
                       <td className="p-3 border font-bold text-blue-900">{r.itemName}</td>
                       <td className="p-3 border">{r.qty}</td>
                       <td className="p-3 border text-slate-600">${r.avgCost.toFixed(2)}</td>
                       <td className="p-3 border font-bold text-blue-900">${r.price.toFixed(2)}</td>
-                      <td className={`p-3 border font-bold ${r.profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>${r.profit.toFixed(2)}</td>
+                      <td className={`p-3 border font-bold ${r.profit >= 0 ? 'text-blue-600' : 'text-slate-900'}`}>${r.profit.toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -2004,7 +2044,7 @@ export default function App() {
               <thead className="bg-slate-50"><tr><th className="p-3 border">کڕیار</th><th className="p-3 border">مۆبایل</th><th className="p-3 border">کاڵا</th><th className="p-3 border">کۆی گشتی</th><th className="p-3 border">وەرگیراو</th><th className="p-3 border">قەرزی ماوە</th></tr></thead>
               <tbody>
                 {activeAccounts.map(s => (
-                  <tr key={s.id} className="border-b"><td className="p-3 border font-medium">{s.customerName}</td><td className="p-3 border">{s.phone}</td><td className="p-3 border">{(s.items || [{itemName: s.itemName}]).map(i=>i.itemName).join('، ')}</td><td className="p-3 border">${s.price.toFixed(2)}</td><td className="p-3 border text-blue-600">${s.paid.toFixed(2)}</td><td className="p-3 border font-bold text-orange-600">${s.balance.toFixed(2)}</td></tr>
+                  <tr key={s.id} className="border-b"><td className="p-3 border font-medium">{s.customerName}</td><td className="p-3 border">{s.phone}</td><td className="p-3 border">{(s.items || [{itemName: s.itemName}]).map(i=>i.itemName).join('، ')}</td><td className="p-3 border">${s.price.toFixed(2)}</td><td className="p-3 border text-blue-600">${s.paid.toFixed(2)}</td><td className="p-3 border font-bold text-slate-900">${s.balance.toFixed(2)}</td></tr>
                 ))}
               </tbody>
             </table>
@@ -2039,11 +2079,11 @@ export default function App() {
 
         {reportTab === 'agents_late' && (
           <div className="bg-white rounded-xl shadow-sm p-4 border border-slate-200 overflow-x-auto">
-            <button onClick={() => printTable('پسوڵە دواکەوتووەکانی بریکارەکان', 'tbl-agents-late')} className="mb-4 bg-slate-100 px-4 py-2 rounded-lg flex gap-2 font-medium"><IconPrinter/> چاپکردن</button>
-            <table id="tbl-agents-late" className="w-full text-right border border-rose-200 min-w-[600px]">
-              <thead className="bg-rose-50 text-rose-900"><tr><th className="p-3 border border-rose-200">پسوڵە</th><th className="p-3 border border-rose-200">بریکار</th><th className="p-3 border border-rose-200">مۆبایل</th><th className="p-3 border border-rose-200">بەرواری گەڕاندنەوە</th><th className="p-3 border border-rose-200">قەرزی ماوە لەم پسوڵەیە</th></tr></thead>
+            <button onClick={() => printTable('قەرزی دواکەوتووەکان (بریکار/کۆمپانیا)', 'tbl-agents-late')} className="mb-4 bg-slate-100 px-4 py-2 rounded-lg flex gap-2 font-medium"><IconPrinter/> چاپکردن</button>
+            <table id="tbl-agents-late" className="w-full text-right border border-slate-300 min-w-[600px]">
+              <thead className="bg-slate-100 text-black"><tr><th className="p-3 border border-slate-300">پسوڵە / جۆر</th><th className="p-3 border border-slate-300">ناو</th><th className="p-3 border border-slate-300">مۆبایل</th><th className="p-3 border border-slate-300">بەرواری گەڕاندنەوە</th><th className="p-3 border border-slate-300">قەرزی ماوە لەم پسوڵەیە</th></tr></thead>
               <tbody>
-                {overdueAgents.map(s => (<tr key={s.id} className="border-b border-rose-100"><td className="p-3 border border-rose-200 font-bold text-slate-500">{s.receiptNo}</td><td className="p-3 border border-rose-200 font-semibold">{s.customerName}</td><td className="p-3 border border-rose-200">{s.phone}</td><td className="p-3 border border-rose-200 text-rose-600 font-bold" dir="ltr">{s.dueDate}</td><td className="p-3 border border-rose-200 text-rose-600 font-bold bg-rose-50">${s.balance.toFixed(2)}</td></tr>))}
+                {overdueAgents.map(s => (<tr key={s.id} className="border-b border-slate-200"><td className="p-3 border border-slate-300 font-bold text-slate-500">{s.receiptNo} <span className="text-xs bg-slate-200 px-1 rounded">{s.saleType === 'credit_company' ? 'کۆمپانیا' : 'بریکار'}</span></td><td className="p-3 border border-slate-300 font-semibold">{s.customerName}</td><td className="p-3 border border-slate-300">{s.phone}</td><td className="p-3 border border-slate-300 text-black font-bold" dir="ltr">{s.dueDate}</td><td className="p-3 border border-slate-300 text-black font-bold bg-slate-50">${s.balance.toFixed(2)}</td></tr>))}
               </tbody>
             </table>
           </div>
@@ -2094,7 +2134,7 @@ export default function App() {
                           <td className="p-3 border text-slate-500" dir="ltr">{e.date}</td>
                           <td className="p-3 border font-medium">{e.type}</td>
                           <td className="p-3 border">{e.desc} {e.note && <span className="text-slate-400 text-xs mr-2">({e.note})</span>}</td>
-                          <td className="p-3 border font-bold text-rose-600" dir="ltr">{e.debit > 0 ? '$'+e.debit.toFixed(2) : '-'}</td>
+                          <td className="p-3 border font-bold text-slate-900" dir="ltr">{e.debit > 0 ? '$'+e.debit.toFixed(2) : '-'}</td>
                           <td className="p-3 border font-bold text-blue-600" dir="ltr">{e.credit > 0 ? '$'+e.credit.toFixed(2) : '-'}</td>
                           <td className="p-3 border font-bold bg-blue-50/50" dir="ltr">${e.balance.toFixed(2)}</td>
                         </tr>
@@ -2103,12 +2143,12 @@ export default function App() {
                   </table>
                   <div style={{ marginTop: '24px', padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px', border: '2px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '18px', fontWeight: 'bold' }}>
                     <span style={{ color: '#0f172a' }}>کۆتا حسابی ماوە:</span>
-                    <span dir="ltr" style={{ color: '#ea580c', fontSize: '22px' }}>${finalBalance.toFixed(2)}</span>
+                    <span dir="ltr" style={{ color: '#000000', fontSize: '22px' }}>${finalBalance.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
             )}
-            {!statementResult.isResolved && statementFilter.name && <div className="p-8 text-center text-rose-500 border border-dashed border-rose-200 rounded-xl bg-rose-50">هیچ حسابێک نەدۆزرایەوە بەم ناوە یان ژمارەیە.</div>}
+            {!statementResult.isResolved && statementFilter.name && <div className="p-8 text-center text-black border border-dashed border-slate-300 rounded-xl bg-slate-50">هیچ حسابێک نەدۆزرایەوە بەم ناوە یان ژمارەیە.</div>}
             {!statementFilter.name && <div className="p-8 text-center text-slate-500 border border-dashed rounded-xl">تکایە لە سەرەوە ناو، مۆبایل، یان ژمارەی پسوڵە بنووسە بۆ بینینی کەشف حساب.</div>}
           </div>
         )}
@@ -2135,7 +2175,7 @@ export default function App() {
           {showForgot ? (
             <div>
               <div className="flex justify-center mb-6">
-                <div className="bg-orange-100 p-4 rounded-full text-orange-600">
+                <div className="bg-blue-100 p-4 rounded-full text-blue-900">
                   <IconLock />
                 </div>
               </div>
@@ -2174,7 +2214,7 @@ export default function App() {
           ) : (
             <div>
               <div className="flex justify-center mb-6">
-                <div className="bg-blue-100 p-4 rounded-full text-blue-700">
+                <div className="bg-blue-100 p-4 rounded-full text-blue-900">
                   <IconLock />
                 </div>
               </div>
