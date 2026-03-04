@@ -514,15 +514,15 @@ export default function App() {
         </div>
         <div class="info-box">
           <strong>بەرواری کڕین:</strong> ${p.date}<br/>
-          <strong>جۆری مامەڵە:</strong> <span style="color: ${p.paymentType === 'debt' ? '#10b981' : '#064e3b'}">${p.paymentType === 'debt' ? 'قەرز لەسەرمان' : 'نەختینە (کاش)'}</span><br/>
+          <strong>جۆری مامەڵە:</strong> <span style="color: ${p.paymentType === 'debt' ? '#f97316' : '#1e3a8a'}">${p.paymentType === 'debt' ? 'قەرز لەسەرمان' : 'نەختینە (کاش)'}</span><br/>
           ${p.paymentType === 'debt' ? `<strong>حسابی ئەم لایەنە:</strong> <span dir="ltr" style="color: #000000; font-weight: bold; font-size: 16px;">$${currentDebt.toFixed(2)}</span>` : ''}
         </div>
       </div>
       <div class="table-responsive">
         <table>
           <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی گشتی</th></tr>
-          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#064e3b;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
-          <tr><td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td><td style="font-weight:bold; font-size: 16px; color:#10b981;">$${p.total.toFixed(2)}</td></tr>
+          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
+          <tr><td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td><td style="font-weight:bold; font-size: 16px; color:#f97316;">$${p.total.toFixed(2)}</td></tr>
         </table>
       </div>
       <div style="margin-top:15px; color:#334155;"><strong>تێبینی:</strong> ${p.note || '-'}</div>
@@ -674,14 +674,14 @@ export default function App() {
       <div class="table-responsive">
         <table>
           <tr><th>ناوی کاڵا</th><th>بڕ</th><th>نرخی تاک</th><th>کۆی نرخ</th></tr>
-          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#064e3b;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
+          ${itemsList.map(i => `<tr><td>${i.itemName}</td><td>${i.qty}</td><td>$${Number(i.unitPrice).toFixed(2)}</td><td style="font-weight:bold; color:#1e3a8a;">$${(Number(i.qty) * Number(i.unitPrice)).toFixed(2)}</td></tr>`).join('')}
           <tr style="background-color: #f8fafc;">
             <td colspan="3" style="text-align: left; font-weight: bold;">کۆی گشتی پسوڵە:</td>
-            <td style="font-weight:bold; font-size: 16px; color:#10b981;">$${s.price.toFixed(2)}</td>
+            <td style="font-weight:bold; font-size: 16px; color:#f97316;">$${s.price.toFixed(2)}</td>
           </tr>
           ${s.saleType === 'installment' ? `
-            <tr><td colspan="3" style="text-align: left;">پێشەکی وەرگیراو:</td><td style="color:#10b981; font-weight:bold;">$${s.advance.toFixed(2)}</td></tr>
-            <tr><td colspan="3" style="text-align: left;">قیستی مانگانە (${s.months} مانگ):</td><td style="color:#064e3b; font-weight:bold;">$${s.monthlyAmount.toFixed(2)}</td></tr>
+            <tr><td colspan="3" style="text-align: left;">پێشەکی وەرگیراو:</td><td style="color:#f97316; font-weight:bold;">$${s.advance.toFixed(2)}</td></tr>
+            <tr><td colspan="3" style="text-align: left;">قیستی مانگانە (${s.months} مانگ):</td><td style="color:#1e3a8a; font-weight:bold;">$${s.monthlyAmount.toFixed(2)}</td></tr>
           ` : ''}
           ${isCreditAgent || isCreditCompany ? `<tr><td colspan="3" style="text-align: left;">وادەی گەڕاندنەوە:</td><td style="color:#000000; font-weight:bold;" dir="ltr">${s.dueDate}</td></tr>` : ''}
         </table>
@@ -697,17 +697,17 @@ export default function App() {
 
     const html = `
       <div style="text-align: center; margin-bottom: 15px;">
-        <h2 style="font-size: 24px; font-weight: 900; color: #064e3b; text-decoration: underline; margin: 0;">گرێبەستی قیست</h2>
+        <h2 style="font-size: 24px; font-weight: 900; color: #1e3a8a; text-decoration: underline; margin: 0;">گرێبەستی قیست</h2>
       </div>
-      <div style="font-size: 14.5px; font-weight: bold; line-height: 1.8; color: #0f172a; text-align: justify; margin-bottom: 20px; padding: 15px 20px; background: #ecfdf5; border-radius: 12px; border: 2px solid #a7f3d0;">
+      <div style="font-size: 14.5px; font-weight: bold; line-height: 1.8; color: #0f172a; text-align: justify; margin-bottom: 20px; padding: 15px 20px; background: #eff6ff; border-radius: 12px; border: 2px solid #bfdbfe;">
         <ol style="margin: 0; padding-right: 20px;">
-          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) پێویستی بە کارتی نیشتمانی هەبوو کە پێشتر وەک بارمتەیەک لای لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) داینابوو تەنها مۆڵەتی شۆفێری لەبری وەردەگیرێت بە مەرجێک ماوەکەی بەسەرنەچوبێت یان ئەو بڕە پارەیەی لە قیستەکە ماوە وەک ئەمانەتێک دەبێت بیدات بە لایەنی یەکەم تا ئەو کاتەی دووبارە کارتی نیشتمانی دەگێڕێتەوە.</li>
+          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) پێویستی بە کارتی نیشتمانی هەبوو کە پێشتر وەک بارمتەیەک لای لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) داینابوو تەنها مۆڵەتی شۆفێری لەبری وەردەگیرێت بە مەرجێک ماوەکەی بەسەرنەچوبێت یان ئەو بڕە پارەیەی لە قیستەکە ماوە وەک ئەمانەتێک دەبێت بیدات بە لایەنی یەکەم تا ئەو کاتەی دووبارە کارتی نیشتمانی دەگێڕێتەوە.</li>
           <li style="margin-bottom: 10px;">لایەنی دووەم بەڵێن دەدات کە پابەند بێت بە گەڕاندنەوەی قیستەکانی لە ماوەی دیاریکراوی خۆیدا هەر ٣٠ ڕۆژ جارێک بێ دواکەوتن ، نەدانی مووچە و دواکەوتنی مووچە و لێبڕینی مووچە و لاوازی بازاڕ یاخوود هەر هۆکارێکی دیکە نەکاتە بەهانە بۆ دواخستنی قیستەکانی.</li>
-          <li style="margin-bottom: 10px;">لایەنی دووەم ئامێری ئاماژەپێکراوی (<span style="color:#064e3b">${itemNames}</span>) بێ هیچ کەم و کوڕییەک وەرگرت.</li>
-          <li style="margin-bottom: 10px;">پێویستە لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) کۆپی کارتی نیشتمانی و کارتی زانیاری بدات بە لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) وە پێویستە وەک بارمتەیەک لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) کارتی نیشتمانی اصلى بدات بە لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) تا کۆتایی هاتنی ماوەی قیستەکە و پاکتاوکردنی هەژمارەکەی.</li>
-          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) ویستی بە هەر هۆکارێک ئەم گرێبەستە هەڵبووەشێنێتەوە ئەوا لایەنی یەکەم (<span style="color:#064e3b">${STORE_NAME}</span>) بە مافی خۆی دەزانێت کە بڕی پێشەکی وەرگیراو نەگەڕێنێتەوە بۆ لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>) وە کاڵای گەڕاوە بە نرخی ڕۆژ خەمڵاندنی بۆ دەکرێت و دەدرێت بە لایەنی دووەم (<span style="color:#10b981">${s.customerName}</span>).</li>
+          <li style="margin-bottom: 10px;">لایەنی دووەم ئامێری ئاماژەپێکراوی (<span style="color:#1e3a8a">${itemNames}</span>) بێ هیچ کەم و کوڕییەک وەرگرت.</li>
+          <li style="margin-bottom: 10px;">پێویستە لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) کۆپی کارتی نیشتمانی و کارتی زانیاری بدات بە لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) وە پێویستە وەک بارمتەیەک لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) کارتی نیشتمانی اصلى بدات بە لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) تا کۆتایی هاتنی ماوەی قیستەکە و پاکتاوکردنی هەژمارەکەی.</li>
+          <li style="margin-bottom: 10px;">هەرکات لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) ویستی بە هەر هۆکارێک ئەم گرێبەستە هەڵبووەشێنێتەوە ئەوا لایەنی یەکەم (<span style="color:#1e3a8a">${STORE_NAME}</span>) بە مافی خۆی دەزانێت کە بڕی پێشەکی وەرگیراو نەگەڕێنێتەوە بۆ لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>) وە کاڵای گەڕاوە بە نرخی ڕۆژ خەمڵاندنی بۆ دەکرێت و دەدرێت بە لایەنی دووەم (<span style="color:#f97316">${s.customerName}</span>).</li>
         </ol>
-        <p style="margin-top: 15px; margin-bottom: 0; font-weight: 900; color: #064e3b; text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+        <p style="margin-top: 15px; margin-bottom: 0; font-weight: 900; color: #1e3a8a; text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
           هەردوو لایەن پاش خوێندنەوەی تەواوی خاڵەکان و تێگەیشتنیان وە بە تەواوی هەست و هۆش و پاش ڕەزامەندییان بە ویستی خۆیان لای خوارەوە واژۆیان کرد.
         </p>
       </div>
@@ -754,11 +754,11 @@ export default function App() {
     `).join('') : '<li>هیچ بەڵگەنامەیەک دیاری نەکراوە.</li>';
     
     const html = `
-      <div style="font-size: 16px; line-height: 1.8; color: #0f172a; margin-bottom: 20px; padding: 25px; background: #ecfdf5; border-radius: 12px; border: 2px solid #a7f3d0;">
+      <div style="font-size: 16px; line-height: 1.8; color: #0f172a; margin-bottom: 20px; padding: 25px; background: #eff6ff; border-radius: 12px; border: 2px solid #bfdbfe;">
         <p style="font-size: 18px; font-weight: bold; margin-bottom: 25px; border-bottom: 1px solid #cbd5e1; padding-bottom: 15px;">
-          ئاماژە بە پسوڵەی ژمارە (<span style="color:#10b981; font-size: 20px;">${sale.receiptNo}</span>)، ئەم بەڵگەنامانەی خوارەوە وەرگیراون لە کڕیار (<strong>${sale.customerName}</strong>):
+          ئاماژە بە پسوڵەی ژمارە (<span style="color:#f97316; font-size: 20px;">${sale.receiptNo}</span>)، ئەم بەڵگەنامانەی خوارەوە وەرگیراون لە کڕیار (<strong>${sale.customerName}</strong>):
         </p>
-        <ul style="list-style-type: none; padding: 0; font-size: 17px; font-weight: bold; color: #064e3b;">${docsHTML}</ul>
+        <ul style="list-style-type: none; padding: 0; font-size: 17px; font-weight: bold; color: #1e3a8a;">${docsHTML}</ul>
       </div>
     `;
     printContent('پسوڵەی وەرگرتنی بەڵگەنامە', sale.receiptNo, html, STORE_NAME, sale.customerName, true);
@@ -839,7 +839,7 @@ export default function App() {
       </div>
       <table>
         <tr><th>بڕی پارەی دیاریکراو</th><th>تێبینی</th></tr>
-        <tr><td style="font-weight:bold; color:#064e3b; font-size: 18px;" dir="ltr">$${Math.abs(tx.amount).toFixed(2)}</td><td>${tx.note || '-'}</td></tr>
+        <tr><td style="font-weight:bold; color:#1e3a8a; font-size: 18px;" dir="ltr">$${Math.abs(tx.amount).toFixed(2)}</td><td>${tx.note || '-'}</td></tr>
       </table>
     `;
     printContent(typeText, tx.receiptNo, html, STORE_NAME, partyName, true);
@@ -1430,7 +1430,7 @@ export default function App() {
 
   const renderPayments = () => {
     const activeSales = sales.filter(s => s.saleType === 'installment' && (s.price - getSalePaidAmount(s.id)) > 0);
-    const activeCreditSales = sales.filter(s => s.saleType === 'credit' && (s.price - getSalePaidAmount(s.id)) > 0);
+    const activeCreditSales = sales.filter(s => (s.saleType === 'credit' || s.saleType === 'credit_agent' || s.saleType === 'credit_company') && (s.price - getSalePaidAmount(s.id)) > 0);
     const activeDebts = companies.filter(c => getCompanyDebt(c.id) > 0);
     const recentPayments = [...capitalTx].filter(tx => tx.type === 'receive_installment' || tx.type === 'receive_agent_payment' || tx.type === 'pay_agent_payment' || tx.type === 'pay_company_debt' || tx.type === 'receive_company_payment' || tx.type === 'pay_office_debt' || tx.type === 'receive_office_loan').reverse().slice(0, 10);
     
@@ -1576,7 +1576,7 @@ export default function App() {
                     {tx.type === 'pay_office_debt' && <span className="text-slate-900">پێدان بە نوسینگە</span>}
                   </td>
                   <td className="p-3 text-slate-700">{tx.desc} <span className="text-slate-400">({tx.note})</span></td>
-                  <td className="p-3 font-bold" dir="ltr"><span className={(tx.type.includes('receive') && tx.type !== 'receive_office_loan') ? 'text-emerald-600' : 'text-slate-900'}>${Math.abs(tx.amount).toFixed(2)}</span></td>
+                  <td className="p-3 font-bold" dir="ltr"><span className={(tx.type.includes('receive') && tx.type !== 'receive_office_loan') ? 'text-blue-600' : 'text-slate-900'}>${Math.abs(tx.amount).toFixed(2)}</span></td>
                   <td className="p-3 flex gap-2">
                     <button onClick={() => printPaymentReceipt(tx)} className="bg-slate-100 text-slate-700 hover:bg-slate-200 p-2 rounded-lg text-xs font-semibold"><IconPrinter /></button>
                     {/* Hiding edit for hawala auto-generated txs to prevent bugs. Just delete and recreate if needed */}
@@ -2385,7 +2385,7 @@ export default function App() {
                         {isUploading ? (
                            <span className="text-xs text-orange-500 animate-pulse font-bold">... باردەکرێت</span>
                         ) : docItem.fileUrl ? (
-                           <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">هاوپێچ کرا</span>
+                           <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">هاوپێچ کرا</span>
                         ) : (
                            <label className="cursor-pointer text-white bg-blue-900 hover:bg-blue-800 w-8 h-8 rounded-full flex items-center justify-center shadow-sm" title="وێنە بگرە یان هەڵبژێرە">
                               + <input type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => handleFileChange(e, dName)} />
