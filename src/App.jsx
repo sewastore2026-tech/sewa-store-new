@@ -1288,11 +1288,11 @@ export default function App() {
   return (
     <div className={`flex flex-col md:flex-row h-screen bg-slate-50 overflow-hidden ${settings.fontSize}`} dir={LANGUAGES[settings.language]?.dir || 'rtl'} style={{fontFamily: "'Calibri', sans-serif"}}>
       <div className={`${currentTheme.sidebar} text-white p-4 flex justify-between items-center shadow-md z-20 md:hidden`}>
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className={`p-2 ${currentTheme.sidebarHover} rounded-lg`}><IconMenu /></button>
         <div className="flex items-center gap-3"><h1 className={`text-lg font-black ${currentTheme.iconText}`}>{STORE_NAME}</h1></div>
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className={`p-2 ${currentTheme.sidebarHover} rounded-lg`}><IconMenu /></button>
       </div>
-      {isMobileMenuOpen && <div className="md:hidden fixed inset-0 bg-slate-900/50 z-40" onClick={() => setIsMobileMenuOpen(false)}></div>}
-      <div className={`fixed inset-y-0 ${LANGUAGES[settings.language]?.dir === 'rtl' ? 'right-0 md:border-l' : 'left-0 md:border-r'} transform ${isMobileMenuOpen ? 'translate-x-0' : (LANGUAGES[settings.language]?.dir === 'rtl' ? 'translate-x-full' : '-translate-x-full')} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-full md:w-64 ${currentTheme.sidebar} text-white flex flex-col shadow-2xl z-50 ${currentTheme.border}`}>
+      {isMobileMenuOpen && <div className="md:hidden fixed inset-0 bg-slate-900/50 z-[40]" onClick={() => setIsMobileMenuOpen(false)}></div>}
+      <div className={`fixed inset-y-0 ${LANGUAGES[settings.language]?.dir === 'rtl' ? 'right-0 md:border-l' : 'left-0 md:border-r'} transform ${isMobileMenuOpen ? 'translate-x-0' : (LANGUAGES[settings.language]?.dir === 'rtl' ? 'translate-x-full' : '-translate-x-full')} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-full md:w-64 ${currentTheme.sidebar} text-white flex flex-col shadow-2xl z-[50] ${currentTheme.border}`}>
         <div className="p-6 text-center border-b border-white/10 relative">
           <button onClick={() => setIsMobileMenuOpen(false)} className={`md:hidden absolute top-4 ${LANGUAGES[settings.language]?.dir === 'rtl' ? 'left-4' : 'right-4'} text-white/50 hover:text-white`}><IconX /></button>
           <div className="mb-4">{STORE_LOGO ? <img src={STORE_LOGO} alt="Logo" className="w-24 h-24 mx-auto object-contain bg-white/5 p-2 rounded-2xl" /> : <div className="w-24 h-24 mx-auto bg-white/10 rounded-2xl flex items-center justify-center"><IconHome size={40} /></div>}</div>
@@ -1313,7 +1313,7 @@ export default function App() {
            <button onClick={() => {setIsLogged(false); setLoggedAppUser(null); setLoginForm({user:'', pass:''}); setIsMobileMenuOpen(false); logAction('Logout'); }} className="w-full bg-rose-500/10 text-rose-400 py-2 rounded-lg text-sm border border-rose-500/20 transition-colors">{t('lgo')}</button>
         </div>
       </div>
-      <div className="flex-1 overflow-y-auto p-4 md:p-8 w-full">
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 w-full z-10">
         <div className="max-w-6xl mx-auto pb-20 md:pb-0">
           {view === 'dashboard' && hasPermission('dashboard') && renderDashboard()}
           {view === 'items' && hasPermission('items') && renderDefinedItems()}
@@ -1332,7 +1332,7 @@ export default function App() {
       </div>
       
       {viewingDocuments && (
-        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-[60] p-4">
           <div className="bg-white p-6 rounded-2xl shadow-2xl max-w-md w-full border border-slate-200">
             <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-4 border-b pb-3"><IconDocs/> {t('dcs')}: {viewingDocuments.customerName}</h3>
             <div className="space-y-3 max-h-[60vh] overflow-y-auto p-2">
@@ -1355,7 +1355,7 @@ export default function App() {
       )}
 
       {modal.show && (
-        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-[60] p-4">
           <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full border border-slate-200">
             <h3 className="text-xl font-bold text-slate-900 mb-4">{modal.type === 'confirm' ? '؟' : '!'}</h3>
             <p className="text-lg text-slate-700 mb-8">{modal.message}</p>
