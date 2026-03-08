@@ -5,15 +5,15 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, updateDoc, onSnapshot
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // --- Constants & Config ---
-const DEFAULT_ADMIN_USER = 'ArkanA';
-const DEFAULT_ADMIN_PASS = 'Arkan1234,';
-const MASTER_RECOVERY_KEY = 'Aida2026';
-const ADMIN_WHATSAPP_NUMBER = '9647769516814';
-const STORE_LOGO = 'https://i.ibb.co/hx5T0jpJ/icon.png'; 
-const INITIAL_STORE_SIGNATURE = 'https://i.ibb.co/PZt3sfJc/Arkan-signature.jpg';
+const DEFAULT_ADMIN_USER = 'SarwarS';
+const DEFAULT_ADMIN_PASS = 'Sarwar1234,';
+const MASTER_RECOVERY_KEY = 'Sewastore2026';
+const ADMIN_WHATSAPP_NUMBER = '9647701534434';
+const STORE_LOGO = 'https://i.ibb.co/jkdXND2T/Gemini-Generated-Image-qfc03bqfc03bqfc0.png'; 
+const INITIAL_STORE_SIGNATURE = 'https://i.ibb.co/qL4BDmBt/Sarwar-signature.png';
 const PARTY2_SIGNATURE = 'https://i.ibb.co/Hf65zpHf/Sarwar-signature.jpg';
-const INITIAL_STORE_PHONE = '07769516814';
-const STORE_NAME = 'ئایدا ستۆر';
+const INITIAL_STORE_PHONE = '07701534434';
+const STORE_NAME = 'سێوە ستۆر';
 const INITIAL_STORE_ADDRESS = 'سلێمانی، شەقامی سەرەکی';
 
 const CURRENCIES = {
@@ -67,7 +67,13 @@ const THEMES = {
 
 const DOC_TYPES = ['کارتی نیشتمانی', 'کارتی زانیاری', 'پاسپۆرت', 'مۆڵەتی شۆفێری', 'کارت بانکی', 'ناسنامە'];
 
-const getFirebaseConfig = () => { try { if (typeof __firebase_config !== 'undefined') return JSON.parse(__firebase_config); } catch (e) {} return { apiKey:"AIzaSyBFPkNBvMcOOMc6Oam8nlrQWAOpCTOu0Bg", authDomain:"aidastore-2026.firebaseapp.com", projectId:"aidastore-2026", storageBucket:"aidastore-2026.firebasestorage.app", messagingSenderId:"1009068204406", appId:"1:1009068204406:web:f64cb19253296e4a391a57" }; };
+const getFirebaseConfig = () => { try { if (typeof __firebase_config !== 'undefined') return JSON.parse(__firebase_config); } catch (e) {} return {     apiKey: "AIzaSyCT_W7fvUb0uvIusJ54y9YMBLdpHee-l_4",
+    authDomain: "sewa-store-db.firebaseapp.com",
+    projectId: "sewa-store-db",
+    storageBucket: "sewa-store-db.firebasestorage.app",
+    messagingSenderId: "265812583939",
+    appId: "1:265812583939:web:b186de9462bb1c95f55036"
+  }; };
 const app = initializeApp(getFirebaseConfig()); const auth = getAuth(app); const db = getFirestore(app); const appId = typeof __app_id !== 'undefined' ? __app_id : 'sewastore-local-app';
 
 // Base64 Image Compression Utility
